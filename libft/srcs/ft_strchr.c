@@ -10,31 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-char	*ft_strchr(const char *str, int c)
-{
-	while (*str != (unsigned char)c)
-	{
-		if (!*str++)
-		return (NULL);
-	}
-	return ((char *)str);
-}*/
-
 #include "libft.h"
 
 char	*ft_strchr(const char *str, int c)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	while (*str)
 	{
-		if (str[i] == (char)c)
-			return ((char *)&str[i]);
-		i++;
+		if (*str == (char)c)
+			return ((char *)&str);
+		str++;
 	}
-	if (str[i] == (char)c)
-		return ((char *)&str[i]);
+	if ((char)c == '\0')
+		return ((char *)str);
 	return (NULL);
 }

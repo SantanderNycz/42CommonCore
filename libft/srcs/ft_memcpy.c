@@ -14,16 +14,18 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*udest;
-	unsigned char	*usrc;
+	size_t				i;
+	unsigned char		*udest;
+	const unsigned char	*usrc;
 
 	udest = (unsigned char *) dest;
-	usrc = (unsigned char *) src;
-	while (n--)
+	usrc = (const unsigned char *) src;
+	if (!dest && !src)
+		return (NULL);
+	while (i < n)
 	{
-		*udest = *usrc;
-		udest++;
-		usrc++;
+		udest[i] = usrc[i];
+		i++;
 	}
 	return (dest);
 }

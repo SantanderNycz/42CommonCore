@@ -15,21 +15,17 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char	*udest;
-	unsigned char	*usrc;
-	size_t			i;
+	size_t				i;
+	unsigned char		*udest;
+	const unsigned char	*usrc;
 
 	if (!dest && !src)
 		return (NULL);
 	udest = (unsigned char *) dest;
-	usrc = (unsigned char *) src;
-	if (udest > usrc)
-		while (len-- > 0)
-			udest[len] = usrc[len];
-	else
-	{
-		while (i++ < len)
-			udest[i] = usrc[i];
-	}
+	usrc = (const unsigned char *) src;
+	if (udest < usrc)
+		return (ft_memcpy(dest, src, len));
+	while (len--)
+		udest[len] = usrc[len];
 	return (dest);
 }
