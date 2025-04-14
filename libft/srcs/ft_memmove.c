@@ -11,11 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	size_t				i;
 	unsigned char		*udest;
 	const unsigned char	*usrc;
 
