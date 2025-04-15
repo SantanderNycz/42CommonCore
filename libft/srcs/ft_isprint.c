@@ -6,15 +6,14 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:21 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/13 18:02:27 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:11:08 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(char i)
 {
-	i = 0;
 	if (i >= 32 && i <= 126)
-		return (i);
+		return (1);
 	else
 		return (0);
 }

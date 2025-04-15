@@ -6,14 +6,16 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:16 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/13 18:01:49 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:10:46 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isascii(int i)
+#include "libft.h"
+
+int	ft_isascii(int i)
 {
-	i = 0;
-	if (i >= 0 && i <= 127)
+	if (ft_isalpha(i) || ft_isdigit(i))
 		return (1);
-	return (0);
+	else
+		return (0);
 }

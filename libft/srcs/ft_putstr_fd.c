@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:12:16 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/11 20:47:10 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:55:47 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	ft_putstr_fd(char *s, int fd)
 	i = 0;
 	while (s[i])
 	{
-		ft_putchar_fd(s, fd);
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
+	if (!s)
+		return ;
 }

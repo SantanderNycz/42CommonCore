@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:11:15 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/14 00:02:18 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:27:37 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
-	dest = (char *)malloc(len + 1) * sizeof(char));
+	dest = (char *)malloc((len + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
 	i = 0;

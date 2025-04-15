@@ -6,11 +6,12 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:28:10 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/14 14:09:29 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:23:10 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *src)
 {

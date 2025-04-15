@@ -6,14 +6,14 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/13 17:58:22 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:32:51 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(char i)
 {
 	if ((i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z'))
-		return (i);
+		return (1);
 	else
 		return (0);
 }

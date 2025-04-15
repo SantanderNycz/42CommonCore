@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:28:12 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/14 14:14:53 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 17:49:20 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*ptr;
 
 	if (count == 0 || size == 0)
-		return (NULL);
+		return (malloc(0));
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
