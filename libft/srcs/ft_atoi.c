@@ -6,11 +6,11 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:05 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 17:31:59 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:00:55 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	res;

@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:09:58 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 18:02:30 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:57:25 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,18 @@ static char	*h_str_cat(char *dest, const char *src)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*dest;
-	int		i;
 
 	if (!s1 || !s2)
 		return (NULL);
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
 		return (NULL);
-	i = 0;
 	ft_strlcpy(dest, s1, ft_strlen(s1) + 1);
 	h_str_cat(dest, s2);
 	return (dest);
 }
 
-/*
-#include <stdio.h>
+/*#include <stdio.h>
 
 int main(void)
 {
