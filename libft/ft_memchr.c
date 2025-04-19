@@ -29,15 +29,18 @@ void	*ft_memchr(const void *str, int c, size_t b)
 	}
 	return (NULL);
 }
-/*
-#include <stdio.h>
+/*#include <stdio.h>
 #include <string.h>
+#include "libft.h"
+
 int     main(void)
 {
-    const  char str[] = "Testing memchr123";
-    char        c = 'i';
-    printf("%s\n", (char *)memchr(str, c, 8));
-    printf("%s\n", (char *)ft_memchr(str, c, 8));
-    printf("%p\n", (char *)memchr(str, c, 8));
-    printf("%p\n", (char *)ft_memchr(str, c, 8));
+    const char str[] = "Testando memchr123";
+    char c = 'i';
+    printf("memchr: %s\n", (char *)memchr(str, c, 8));
+    printf("ft_memchr: %s\n", (char *)ft_memchr(str, c, 8));
+    printf("memchr ptr: %p\n", (char *)memchr(str, c, 8));
+    printf("ft_memchr ptr: %p\n\n", (char *)ft_memchr(str, c, 8));
+	
+	return (0);
 }*/

@@ -29,3 +29,16 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("memcmp: %d\n", memcmp("abc", "abd", 2));
+    printf("ft_memcmp: %d\n\n", ft_memcmp("abc", "abd", 2));
+	
+	return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:40 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/13 18:40:15 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:10:20 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,20 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dest_size)
 	}
 	return (src_len);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    char s1[10];
+    char s2[10];
+    strlcpy(s1, "copy", sizeof(s1));
+    ft_strlcpy(s2, "copy", sizeof(s2));
+    printf("strlcpy: %s\n", s1);
+    printf("ft_strlcpy: %s\n\n", s2);
+	
+	return (0);
+}
+*/

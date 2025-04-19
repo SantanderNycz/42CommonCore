@@ -27,3 +27,16 @@ char	*ft_strrchr(const char *str, int c)
 		return ((char *)str);
 	return ((char *)last);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("strrchr: %s\n", strrchr("banana", 'a'));
+    printf("ft_strrchr: %s\n\n", ft_strrchr("banana", 'a'));
+	
+	return (0);
+}
+*/

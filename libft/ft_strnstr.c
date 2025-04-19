@@ -38,18 +38,15 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 	return (0);
 }
 
-/*int main(void)
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int main(void)
 {
-	const char *str = "Solta a carta, Tigrinho!";
-	const char *find = "Tig";
-	size_t len = 23;
-
-	char *resultado = ft_strnstr(str, find, len);
-
-	if (resultado)
-		printf("Resultado: \"%s\"\n", resultado);
-	else
-		printf("Substring não encontrada.\n");
-
-	return 0;
+    const char *hay = "Ache a agulha no palheiro";
+    printf("strnstr: %s\n", strnstr(hay, "agulha", 30));
+    printf("ft_strnstr: %s\n\n", ft_strnstr(hay, "agulha", 30));
+	
+	return (0);
 }*/

@@ -20,3 +20,17 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    t_list *last = ft_lstlast(head);
+    printf("ft_lstlast: %s\n\n", (char *)last->content);
+	
+	return (0);
+}
+*/

@@ -26,3 +26,16 @@ void	ft_bzero(void *str, size_t len)
 		ptr++;
 	}
 */
+
+/*int	main(void)
+{
+    char buffer3[10] = "abcdefghi";
+    char buffer4[10] = "abcdefghi";
+    bzero(buffer3, 4);
+    ft_bzero(buffer4, 4);
+    printf("bzero: %.9s\n", buffer3);
+    printf("ft_bzero: %.9s\n\n", buffer4);
+	
+	return (0);
+}
+*/

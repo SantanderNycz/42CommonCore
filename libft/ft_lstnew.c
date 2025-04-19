@@ -23,3 +23,19 @@ t_list	*ft_lstnew(void *content)
 	element->next = NULL;
 	return (element);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    t_list *node = ft_lstnew(strdup("42"));
+    printf("ft_lstnew: %s\n\n", (char *)node->content);
+    free(node->content);
+    free(node);
+	
+	return (0);
+}
+*/

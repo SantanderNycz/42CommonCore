@@ -25,3 +25,21 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		*udest++ = *usrc++;
 	return (dest);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    char src2[] = "abcde";
+    char dst1[10] = {0};
+    char dst2[10] = {0};
+    memccpy(dst1, src2, 'd', 5);
+    ft_memccpy(dst2, src2, 'd', 5);
+    printf("memccpy: %s\n", dst1);
+    printf("ft_memccpy: %s\n\n", dst2);
+	
+	return (0);
+}
+*/

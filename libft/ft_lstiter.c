@@ -22,3 +22,26 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		lst = lst->next;
 	}
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    void *duplicate(void *s)
+    {
+        return strdup((char *)s);
+    }
+    void del_content(void *s) { free(s); }
+    t_list *mapped = ft_lstmap(head, duplicate, del_content);
+    printf("ft_lstmap: ");
+    print_list(mapped);
+
+    ft_lstclear(&head, free);
+    ft_lstclear(&mapped, free);
+
+	return (0);
+}
+*/

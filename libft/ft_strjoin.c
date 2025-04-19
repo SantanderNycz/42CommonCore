@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:09:58 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 18:57:25 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:15:02 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 
 /*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
 int main(void)
 {
-	char *s1 = "Hello, ";
-	char *s2 = "world!";
-	char *result = ft_strjoin(s1, s2);
-
-	if (result)
-	{
-		printf("Resultado da concatenação: %s\n", result);
-		free(result);  // Lembre-se de liberar a memória depois!
-	}
-	else
-	{
-		printf("Erro na alocação de memória\n");
-	}
+    char *joined = ft_strjoin("Hello", " World");
+    printf("ft_strjoin: %s\n\n", joined);
+    free(joined);
 
 	return 0;
 }*/

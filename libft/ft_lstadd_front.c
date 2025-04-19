@@ -19,3 +19,20 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	new->next = *lst;
 	*lst = new;
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    t_list *head = ft_lstnew(strdup("Porto"));
+    t_list *new_front = ft_lstnew(strdup("42"));
+    ft_lstadd_front(&head, new_front);
+    printf("ft_lstadd_front: ");
+    print_list(head);
+    
+	return (0);
+}
+*/

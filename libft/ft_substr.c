@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:09:04 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 18:41:18 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:12:36 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,18 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 	res[i] = '\0';
 	return (res);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    char *sub = ft_substr("Hello World", 6, 5);
+    printf("ft_substr: %s\n\n", sub);
+    free(sub);
+	
+	return (0);
+}
+*/

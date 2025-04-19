@@ -24,3 +24,16 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)str);
 	return (NULL);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("strchr: %s\n", strchr("abcdef", 'd'));
+    printf("ft_strchr: %s\n\n", ft_strchr("abcdef", 'd'));
+	
+	return (0);
+}
+*/

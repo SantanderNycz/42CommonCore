@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:13:10 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:40:35 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:17:36 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ void	ft_putnbr_fd(int n, int fd)
 
 /*
 #include <unistd.h>
+#include "libft.h"
 
 int main(void)
 {
-	ft_putnbr_fd(42, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(-2147483648, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(0, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(-1234, 1);
-	ft_putchar_fd('\n', 1);
+    ft_putnbr_fd(42, 1);
+    write(1, "\n", 1);
+
+    ft_putnbr_fd(-12345, 1);
+    write(1, "\n", 1);
+
+    ft_putnbr_fd(0, 1);
+    write(1, "\n", 1);
 	return (0);
 }*/

@@ -24,3 +24,17 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (c);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+
+int		main(void)
+{
+    printf("ft_lstsize: %d\n\n", ft_lstsize(head));
+	
+	return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:28:12 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 17:49:20 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:12:04 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,50 +25,19 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-/*	
+/*	#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
 int	main(void)
 {
-	int *array1, *array2;
-	size_t i = 0, size = 5;
-
-	// Testando ft_calloc
-	array1 = (int *)ft_calloc(size, sizeof(int));
-	if (!array1)
-	{
-		printf("Erro ao alocar memória com ft_calloc.\n");
-		return (1);
-	}
-
-	// Testando calloc do sistema
-	array2 = (int *)calloc(size, sizeof(int));
-	if (!array2)
-	{
-		printf("Erro ao alocar memória com calloc.\n");
-		free(array1);
-		return (1);
-	}
-
-	// Exibindo resultados para comparação
-	printf("Conteúdo do array alocado com ft_calloc:\n");
-	while (i < size)
-	{
-		printf("array1[%zu] = %d\n", i, array1[i]);
-		i++;
-	}
-
-	i = 0; // resetando o índice para o próximo loop
-
-	printf("\nConteúdo do array alocado com calloc:\n");
-	while (i < size)
-	{
-		printf("array2[%zu] = %d\n", i, array2[i]);
-		i++;
-	}
-
-	// Liberando a memória
-	free(array1);
-	free(array2);
-
+    int *arr_std = (int *)calloc(4, sizeof(int));
+    int *arr_ft = (int *)ft_calloc(4, sizeof(int));
+    printf("calloc: %d %d %d %d\n", arr_std[0], arr_std[1], arr_std[2], arr_std[3]);
+    printf("ft_calloc: %d %d %d %d\n\n", arr_ft[0], arr_ft[1], arr_ft[2], arr_ft[3]);
+    free(arr_std);
+    free(arr_ft);
+	
 	return (0);
-}
 }*/

@@ -26,3 +26,16 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	}
 	*lst = NULL;
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("ft_tolower('B') = %c\n", ft_tolower('B'));
+	
+	return (0);
+}
+*/

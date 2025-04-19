@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:10:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 18:03:35 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:12:59 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,15 @@ char	*ft_itoa(int n)
 }
 
 /*#include <stdio.h>
-#include <limits.h>
+#include <stdlib.h>
+#include <string.h>
 #include "libft.h"
 
 int	main(void)
 {
-	int		test_values[] = {0, 42, -42, 123456, -123456, INT_MAX, INT_MIN};
-	size_t	i = 0;
-	char	*str;
-
-	while (i < sizeof(test_values) / sizeof(test_values[0]))
-	{
-		str = ft_itoa(test_values[i]);
-		if (str)
-		{
-			printf("ft_itoa(%d) = \"%s\"\n", test_values[i], str);
-			free(str); // libera a memória alocada
-		}
-		else
-		{
-			printf("ft_itoa(%d) = NULL (erro de malloc?)\n", test_values[i]);
-		}
-		i++;
-	}
+    char *itoa_result = ft_itoa(-12345);
+    printf("ft_itoa: %s\n\n", itoa_result);
+    free(itoa_result);
 	return (0);
 }
 */

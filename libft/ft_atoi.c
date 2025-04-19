@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:05 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 19:00:55 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:11:51 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,17 @@ int	ft_atoi(const char *str)
 	return (res * neg);
 }
 
-/*int main(void)
+/*#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+
+int main(void)
 {
-	ft_atoi("   +123")    // 123
-	ft_atoi("   -42")     // -42
-	ft_atoi("  0042abc")  // 42
-	ft_atoi("   +--123")  // 0
+    printf("ft_atoi: %d\n", ft_atoi("  +42"));
+    printf("ft_atoi: %d\n", ft_atoi("   +123"));
+    printf("ft_atoi: %d\n", ft_atoi("  0042abc"));
+    printf("ft_atoi: %d\n", ft_atoi("  -42"));
+    printf("ft_atoi: %d\n", ft_atoi("   +--123"));
+	
+	return (0);
 }*/

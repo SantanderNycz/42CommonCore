@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:12:16 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 17:55:47 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:17:52 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,15 @@ void	ft_putstr_fd(char *s, int fd)
 	if (!s)
 		return ;
 }
+
+/*#include <unistd.h>
+#include "libft.h"
+
+int		main(void)
+{
+    ft_putstr_fd("Hello, world!", 1);
+    write(1, "\n", 1);
+	
+	return (0);
+}
+*/

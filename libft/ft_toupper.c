@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:52:03 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/13 18:43:44 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:09:29 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,16 @@ int	ft_toupper(int c)
 		c -= 32;
 	return (c);
 }
+
+/*#include <stdio.h>
+#include <ctype.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("tolower('D'): %c\n", tolower('D'));
+    printf("ft_tolower('D'): %c\n", ft_tolower('D'));
+
+	return (0);
+}
+*/

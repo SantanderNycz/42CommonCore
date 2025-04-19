@@ -26,3 +26,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last->next = new;
 	}
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    t_list *new_back = ft_lstnew(strdup("School"));
+    ft_lstadd_back(&head, new_back);
+    printf("ft_lstadd_back: ");
+    print_list(head);
+	
+	return (0);
+}
+*/

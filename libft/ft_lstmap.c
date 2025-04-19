@@ -36,3 +36,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_list);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("ft_tolower('B') = %c\n", ft_tolower('B'));
+	
+	return (0);
+}
+*/

@@ -27,3 +27,20 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 		udest[len] = usrc[len];
 	return (dest);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    char overlap1[] = "123456789";
+    char overlap2[] = "123456789";
+    memmove(overlap1 + 2, overlap1, 5);
+    ft_memmove(overlap2 + 2, overlap2, 5);
+    printf("memmove: %s\n", overlap1);
+    printf("ft_memmove: %s\n\n", overlap2);
+	
+	return (0);
+}
+*/

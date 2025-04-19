@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:10:39 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 14:59:44 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:12:48 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,28 +109,20 @@ char	**ft_split(const char *s, char c)
 /*
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
 int	main(void)
 {
-	char	**result;
-	int		i;
-	
-	result = ft_split(" Quero ir pra casa dormir ", ' ');
-	
-	if (!result)
-	{
-		printf("Erro ao alocar memória ou entrada inválida.\n");
-		return (1);
-		}
-		
-	i = 0;
-	while (result[i])
-	{
-		printf("Palavra %d: \"%s\"\n", i, result[i]);
-		free(result[i]);
-		i++;
-	}
-	free(result);
+    char **split = ft_split("42-Porto-Escola", '-');
+    printf("ft_split:\n");
+    for (int i = 0; split[i]; i++)
+    {
+        printf("[%s]\n", split[i]);
+        free(split[i]);
+    }
+    free(split);
+    printf("\n");
 
 	return (0);
 }

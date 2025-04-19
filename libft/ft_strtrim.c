@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:10:15 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 15:04:16 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:15:08 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,18 @@ static int	h_to_trim(const char *set, char c)
 	}
 	return (0);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    char *trimmed = ft_strtrim("--42 Porto--", "-");
+    printf("ft_strtrim: %s\n\n", trimmed);
+    free(trimmed);
+	
+	return (0);
+}
+*/

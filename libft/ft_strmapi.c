@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:11:15 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/15 16:27:37 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:15:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,16 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (dest);
 }
 
-/*
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
 int main(void)
 {
-	char *original = "leonardo";
-	char *result = ft_strmapi(original, my_func);
-
-	if (result)
-	{
-		printf("Original: %s\n", original);
-		printf("Modificado: %s\n", result);
-		free(result);
-	}
-	else
-		printf("Erro ao alocar memória\n");
+    char *mapi_result = ft_strmapi("abcd", [](unsigned int i, char c) { return c + i; });
+    printf("ft_strmapi: %s\n\n", mapi_result);
+    free(mapi_result);
 
 	return 0;
 }*/
