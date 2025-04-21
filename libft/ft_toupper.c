@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:52:03 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/19 17:09:29 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:18:41 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_toupper(int c)
 
 int		main(void)
 {
-    printf("tolower('D'): %c\n", tolower('D'));
-    printf("ft_tolower('D'): %c\n", ft_tolower('D'));
+    printf("toupper('D'): %c\n", toupper('D'));
+    printf("ft_toupper('D'): %c\n", ft_toupper('D'));
 
 	return (0);
 }

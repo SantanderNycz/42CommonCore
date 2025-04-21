@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:11:33 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/19 17:15:31 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:32:01 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 /*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libft.h"
 
 int		main(void)
 {
-    printf("ft_tolower('B') = %c\n", ft_tolower('B'));
-	
+	char	str[] = "paranapiacaba!";
+
+	printf("Antes: %s\n", str);
+	ft_striteri(str, to_uppercase);
+	printf("Depois: %s\n", str);
+
 	return (0);
+}
 }
 */

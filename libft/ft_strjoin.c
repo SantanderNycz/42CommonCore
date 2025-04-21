@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:09:58 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/19 17:15:02 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:20:05 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 int main(void)
 {
-    char *joined = ft_strjoin("Hello", " World");
+    char *joined;
+	
+	joined = ft_strjoin("Hello", " World");
     printf("ft_strjoin: %s\n\n", joined);
     free(joined);
 

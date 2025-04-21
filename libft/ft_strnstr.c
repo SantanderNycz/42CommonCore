@@ -44,7 +44,9 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 
 int main(void)
 {
-    const char *hay = "Ache a agulha no palheiro";
+    const char *hay;
+	
+	hay = "Ache a agulha no palheiro";
     printf("strnstr: %s\n", strnstr(hay, "agulha", 30));
     printf("ft_strnstr: %s\n\n", ft_strnstr(hay, "agulha", 30));
 	
