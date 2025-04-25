@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:59:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/21 18:04:49 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 16:59:44 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,62 @@
 #include <stdarg.h>
 
 int     ft_printf(const char *format, ...);
-static size_t    ft_typecmp(const char *str);
+static size_t    ft_typecmp(const char *format, int c, va_list args);
 
 int     ft_printf(const char *format, ...)
 {
-    va_list     args;
+    va_list         args;
+    unsigned int    c;
+    int             ret;
 
     va_start( args, format);
-    
-    va_arg( args, char *);
-    va_arg( args, int);
-    va_arg( args, float);
-    va_arg( args, void);
-    //va_arg( args, bool);
-    ft_typecmp(const char *str);
-    
-    va_end (args);
-}
-
-static size_t    ft_typecmp(const char *format)
-{
-    char    *str;
-    int     c;
 
     c = 0;
-    while (str[c])
+        while (format[c])
     {
-        if (str[c] == '%')
-            format = (typeof(str[c + 1]));
-        else if (format == 's')
-            return ((char) ft(* char));
-        else if (format == 'd')
-            return ((int) ft(int));
-        else if (format == 'f')
-            return ((float) ft(float));
-        else (format == 'p')
-            return ((void) ft(void));
+        if (format[c] == '%' && ft_strchr("cspdiuxX%", format[c + 1]))
+        {
+            ret += ft_typecmp(format, c, args);
+            c++;
+        }
+        else
+            ret += ft_putchr(format[c]);
         c++;
     }
+    va_end (args);
+    return (ret);
 }
+
+static size_t    ft_typecmp(const char *format, int c, va_list args)
+{
+        if (format[c + 1] == '%')
+            return (ft_putchar(format[c + 1]));
+        else if (format[c + 1] == 's')
+        {
+            return ft_putstr(va_arg(args, char *));
+        }
+        else if ((format[c + 1] == 'd') || (format[c] == 'i'))
+        {
+            return ft_putnbr(va_arg(args, int));               
+        }
+        else if (format[c + 1] == 'c')
+        {
+            return ft_putchr(va_arg(args, int));
+        }
+        else if (format[c + 1] == 'u')
+            return (ft_putnbr_u(va_arg(args, unsigned int)));
+        else if (format [c + 1] == 'x' || format [c + 1] == 'X')
+        {
+            if (format[c + 1] == 'X')
+                return (ft_puthex(va_arg(args, unsigned int), "0123456789ABCDEF"));
+            else
+                return (ft_puthex(va_arg(args, unsigned int), "0123456789abcdef"));
+        }
+        else if (format[c + 1] == 'p')
+        {
+            return (ft_putstr("0x") + ft_print_pointer(va_arg(args, void *), "0123456789abcdef"));
+        }
+        else
+            return (0);
+}
+

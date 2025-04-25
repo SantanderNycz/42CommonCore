@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 15:31:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/23 14:37:36 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/23 18:29:34 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/25 15:36:46 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
+#include <limits.h>
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft.h"
-
-int     ft_printf(const char *format, ...);
-
-#endif
+void	ft_putnbr_u(unsigned int n)
+{
+	char	*str;
+	int		len;
+	
+	str = ft_utoa(n);
+	len = ft_putstr(str);
+	free(str);
+	return(len);
+}

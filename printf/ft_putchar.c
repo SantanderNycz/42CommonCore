@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 15:31:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/23 14:37:36 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 13:11:50 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/23 18:31:02 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft.h"
-
-int     ft_printf(const char *format, ...);
-
-#endif
+void	ft_putchar(char c)
+{
+	write (1, &c, 1);
+}
