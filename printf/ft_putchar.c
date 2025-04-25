@@ -6,11 +6,11 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:11:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/23 18:31:02 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:45:53 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c)
 {

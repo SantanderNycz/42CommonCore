@@ -6,15 +6,15 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:51:05 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/19 17:11:51 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:51:46 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	res;
-	int	neg;
+	int		i;
+	int		res;
+	int		neg;
 
 	i = 0;
 	res = 0;
@@ -37,7 +37,7 @@ int	ft_atoi(const char *str)
 
 /*#include <stdio.h>
 #include <stdlib.h>
-#include "libft.h"
+#include "ft_printf.h"
 
 int main(void)
 {

@@ -6,20 +6,20 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:29:34 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 15:38:04 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:59:20 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 #include <limits.h>
 
-void	ft_putnbr_u(int n)
+void	ft_putnbr(int n)
 {
 	char	*str;
 	int		len;
-	
+
 	str = ft_itoa(n);
 	len = ft_putstr(str);
 	free(str);
-	return(len);
+	return (len);
 }

@@ -1,6 +1,14 @@
-NAME = libft.a
+NAME = libftprintf.a
 
-SRCS		= ft_printf.c
+SRCS		= ft_printf.c ft_printf
+*ft_strchr
+ft_putchar
+ft_putstr
+ft_putnbr
+ft_putnbr_u
+ft_puthex
+ft_print_pointer
+ft_atoi
 
 OBJS		= $(SRCS:.c=.o)
 
