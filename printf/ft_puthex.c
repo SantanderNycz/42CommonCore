@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:28:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 19:32:15 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:45:30 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	count_hex(unsigned int n)
 
 static char	*hex_to_str(unsigned int n, char *base)
 {
-	int	size;
-	char *hex;
+	int		size;
+	char	*hex;
 
 	size = count_hex(n);
 	hex = (char *)malloc(sizeof(char) * (size + 1));
@@ -50,7 +50,7 @@ static char	*hex_to_str(unsigned int n, char *base)
 int	ft_puthex(unsigned int nbr, char *base)
 {
 	char	*digits;
-	int	len;
+	int		len;
 
 	digits = hex_to_str(nbr, base);
 	len = ft_putstr(digits);

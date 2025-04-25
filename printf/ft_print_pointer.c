@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 17:56:14 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 19:13:25 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:13:58 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	count_hex(unsigned long n)
 
 static char	*hex_to_str(unsigned long n, char *base)
 {
-	int	size;
-	char *hex;
+	int		size;
+	char	*hex;
 
 	size = count_hex(n);
 	hex = (char *)malloc(sizeof(char) * (size + 1));
@@ -50,8 +50,8 @@ static char	*hex_to_str(unsigned long n, char *base)
 int	ft_print_pointer(void *nbr, char *base)
 {
 	unsigned long	n;
-	char	*digits;
-	int	len;
+	char			*digits;
+	int				len;
 
 	n = (unsigned long)nbr;
 	digits = hex_to_str(n, base);

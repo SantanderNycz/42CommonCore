@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:59:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 19:07:50 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:50:26 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	ft_typecmp(const char *format, int c, va_list args)
 		return (ft_putchar(format[c + 1]));
 	else if (format[c + 1] == 's')
 		return (ft_putstr(va_arg(args, char *)));
-	else if ((format[c + 1] == 'd') || (format[c] == 'i'))
+	else if ((format[c + 1] == 'd') || (format[c + 1] == 'i'))
 		return (ft_putnbr(va_arg(args, int)));
 	else if (format[c + 1] == 'c')
 		return (ft_putchar(va_arg(args, int)));
@@ -60,7 +60,8 @@ static size_t	ft_typecmp(const char *format, int c, va_list args)
 			return (ft_puthex(va_arg(args, unsigned int), "0123456789abcdef"));
 	}
 	else if (format[c + 1] == 'p')
-		return (ft_putstr("0x") + ft_print_pointer(va_arg(args, void *), "0123456789abcdef"));
+		return (ft_putstr("0x")
+			+ ft_print_pointer(va_arg(args, void *), "0123456789abcdef"));
 	else
 		return (0);
 }
