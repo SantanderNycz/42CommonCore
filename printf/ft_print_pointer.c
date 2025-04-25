@@ -3,58 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsantand <lsantand@student.42porto.co      +#+  +:+       +#+        */
+/*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 17:56:14 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 17:58:55 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:57:50 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*h_new_str(unsigned long value, int *strlen)
+static int	count_hex(unsigned int n)
 {
-	int				i;
-	char			*str;
-	unsigned long	temp;
+	int	i;
 
 	i = 0;
-	temp = value;
-	while (temp)
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		temp = temp / 16;
+		n /= 16;
 		i++;
 	}
-	str = calloc(i + 1, sizeof(char));
-	*strlen = i - 1;
-	return (str);
+	return (i);
 }
 
-int	ft_print_pointer(unsigned long value, int asc)
+static char	*hex_to_str(unsigned int n, char *base)
 {
-	unsigned long	temp_value;
-	char			*printout;
-	int				*iptr;
-	int				i;
+	int	size;
+	char *hex;
 
-	iptr = &i;
-	temp_value = value;
-	printout = h_new_str(value, iptr);
-	if (!printout)
-		return (0);
-	while (temp_value != 0 && i-- >= 0)
+	size = count_hex(n);
+	hex = (char *)malloc(sizeof(char) * (size + 1));
+	if (!hex)
+		return (NULL);
+	hex[size] = '\0';
+	while (size > 0)
 	{
-		if ((temp_value % 16) < 10)
-			printout[i + 1] = (temp_value % 16) + 48;
-		else
-			printout[i + 1] = (temp_value % 16) + asc;
-		temp_value = temp_value / 16;
+		hex[size - 1] = base [n % 16];
+		n /= 16;
+		size--;
 	}
-	i = ft_strlen(printout);
-	i = i + ft_putstr("0x");
-	ft_putstr(printout);
-	free(printout);
-	if (value == 0)
-		i += ft_putchar('0');
-	return (i);
+	return (hex);
+}
+
+int	ft_puthex(unsigned int nbr, char *base)
+{
+	char	*digits;
+	int	len;
+
+	digits = hex_to_str(nbr, base);
+	len = ft_putstr(digits);
+	free(digits);
+	return (len);
 }

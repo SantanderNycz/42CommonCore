@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:11:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 18:35:35 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:02:06 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 int	ft_putchar(char c)
 {
 	write (1, &c, 1);
+	return (1);
 }
