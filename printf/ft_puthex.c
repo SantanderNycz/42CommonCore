@@ -6,13 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:28:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 17:59:38 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:35:09 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_puthex(int nbr)
+int	ft_puthex(int nbr)
 {
 	char	*digits;
 

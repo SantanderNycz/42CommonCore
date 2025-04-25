@@ -6,13 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:12:16 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 18:12:48 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:35:22 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c);
+int	ft_putchar(char c);
 
 int	ft_putstr(char *s)
 {

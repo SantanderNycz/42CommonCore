@@ -6,12 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:59:13 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 18:05:17 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:31:55 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
+#include "ft_printf.h"
 
 static size_t	ft_typecmp(const char *format, int c, va_list args);
 
@@ -23,6 +24,7 @@ int	ft_printf(const char *format, ...)
 
 	va_start(args, format);
 	c = 0;
+	ret = 0;
 	while (format[c])
 	{
 		if (format[c] == '%' && ft_strchr("cspdiuxX%", format[c + 1]))
@@ -31,7 +33,7 @@ int	ft_printf(const char *format, ...)
 			c++;
 		}
 		else
-			ret += ft_putchr(format[c]);
+			ret += ft_putchar(format[c]);
 		c++;
 	}
 	va_end (args);
@@ -47,7 +49,7 @@ static size_t	ft_typecmp(const char *format, int c, va_list args)
 	else if ((format[c + 1] == 'd') || (format[c] == 'i'))
 		return (ft_putnbr(va_arg(args, int)));
 	else if (format[c + 1] == 'c')
-		return (ft_putchr(va_arg(args, int)));
+		return (ft_putchar(va_arg(args, int)));
 	else if (format[c + 1] == 'u')
 		return (ft_putnbr_u(va_arg(args, unsigned int)));
 	else if (format [c + 1] == 'x' || format [c + 1] == 'X')

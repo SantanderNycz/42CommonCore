@@ -6,14 +6,14 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:29:34 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 17:59:20 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:35:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <limits.h>
 
-void	ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
 	char	*str;
 	int		len;
