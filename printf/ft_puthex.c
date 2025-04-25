@@ -6,13 +6,14 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:28:50 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 19:00:21 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:32:15 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdlib.h>
 
-static int	count_hex(unsigned long n)
+static int	count_hex(unsigned int n)
 {
 	int	i;
 
@@ -27,7 +28,7 @@ static int	count_hex(unsigned long n)
 	return (i);
 }
 
-static char	*hex_to_str(unsigned long n, char *base)
+static char	*hex_to_str(unsigned int n, char *base)
 {
 	int	size;
 	char *hex;
@@ -46,14 +47,12 @@ static char	*hex_to_str(unsigned long n, char *base)
 	return (hex);
 }
 
-int	ft_print_pointer(void *nbr, char *base)
+int	ft_puthex(unsigned int nbr, char *base)
 {
-	unsigned long	n;
 	char	*digits;
 	int	len;
 
-	n = (unsigned long)nbr;
-	digits = hex_to_str(n, base);
+	digits = hex_to_str(nbr, base);
 	len = ft_putstr(digits);
 	free(digits);
 	return (len);

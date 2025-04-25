@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:12:16 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 18:35:22 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:10:16 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putstr(char *s)
 
 	if (!s)
 	{
-		ft_putchar("(null)");
+		write(1, "(null)", 6);
 		return (6);
 	}
 	len = ft_strlen(s);

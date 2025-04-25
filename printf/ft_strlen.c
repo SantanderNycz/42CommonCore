@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 18:29:34 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 19:13:58 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/08 19:51:44 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/25 19:11:45 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
-#include <stdlib.h>
 
-int	ft_putnbr_u(unsigned int n)
+int	ft_strlen(const char *str)
 {
-	char	*str;
-	int		len;
+	int	i;
 
-	str = ft_utoa(n);
-	len = ft_putstr(str);
-	free(str);
-	return (len);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("strlen('Hello'): %lu\n", strlen("Hello"));
+    printf("ft_strlen('Hello'): %lu\n", ft_strlen("Hello"));
+	
+	return (0);
+}
+*/
