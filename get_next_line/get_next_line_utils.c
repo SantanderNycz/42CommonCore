@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 23:14:11 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 23:14:11 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/29 18:42:25 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char	*s)
 	return (i);
 }
 
-char	*ft_strchr(const char	*s, int	c)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
