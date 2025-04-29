@@ -1,10 +1,8 @@
 NAME = libftprintf.a
 
-SRCS		= ft_printf.c ft_printf.c ft_strchr.c \
-			ft_putchar.c ft_putstr.c ft_putnbr.c \
-			ft_putnbr_u.c ft_puthex.c ft_print_pointer.c \
-			ft_atoi.c ft_utoa.c ft_itoa.c ft_strlen.c \
-			ft_strchr.c
+SRCS		= ft_printf.c ft_printf_utils.c \
+			ft_puthex.c ft_print_pointer.c \
+			ft_atoi.c ft_utoa.c ft_itoa.c ft_strchr.c\
 
 OBJS		= $(SRCS:.c=.o)
 
