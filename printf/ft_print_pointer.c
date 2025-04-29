@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 17:56:14 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/25 20:13:58 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:16:45 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	ft_print_pointer(void *nbr, char *base)
 	int				len;
 
 	n = (unsigned long)nbr;
+	if (nbr == NULL)
+		return (ft_putstr("(nil)"));
 	digits = hex_to_str(n, base);
 	len = ft_putstr(digits);
 	free(digits);
