@@ -1,0 +1,15 @@
+O FD indica um arquivo. 
+
+O valor de FD é recebido na main.c atraves da funcao open() --> fd = open("arquivo", O_RDONLY)
+O valor recebido é passado para o GNL.
+
+A funcao read() volta a ler de onde a leitura parou.
+
+Vai guardando o buffer ate achar o \n na string static, onde guardo o que o buffer recebe. Crio um while para isso, onde ele termina e retorna ate o \n, e entao guardo o restante na propria string static.
+
+
+A função read_file recebe como parametro o fd do arquivo e a variavel estatica. Crio um buffer com o tamanho do BUFFER_SIZE e uso a funcao read() para ler o arquivo ate encontrar o final dele (com return 0) ou ate encontrar uma \n. Se rolar um erro, o laco para, libera a variavel buffer que tinha mallocado e retorna NULL. Caso contrario, a ft_strjoin() junta o conteudo do Backup com o Buffer.
+
+A função get_line() pega a linha, usando como parametro o Backup. Faz uma verificacao se Backup nao esta com o primeiro caracter como null(\0), percorre ela inteira ate achar uma \n ou ate o final dela, cria com o malloc uma string com o tamanho lido e somo mais 2 espacos, pra caso tenha uma \n e um \0 em seguida, e retorne essa linha.
+
+A função remove_read_line() remove a linha lida. Ela recebe como parametro a static, onde procuro ate a \n ou ate chegar ao final. Se chegar ao final, dá um free e retorna NULL. Se nao chegar, malloca uma nova variavel com o "(tamanho total de backup) - (tamanho da linha)", copia o restante de Backup para a nova variavel e dá um free nela.
