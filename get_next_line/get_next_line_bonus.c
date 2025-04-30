@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 23:13:56 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/29 18:35:23 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/30 21:11:57 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/30 21:11:57 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <unistd.h>
+#include "get_next_line_bonus.h"
 
 // join e free
 static char		*h_free(char *s, char *buf)
@@ -106,15 +105,15 @@ static char		*h_read_file(int fd, char *res)
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
+	static char	*s[FOPEN_MAX];
 	char 		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	s = h_read_file(fd, s);
-	if (!s)
+	s[fd] = h_read_file(fd, s[fd]);
+	if (!s[fd])
 		return (NULL);
-	line = h_line(s);
-	s = h_find(s);
+	line = h_line(s[fd]);
+	s[fd] = h_find(s[fd]);
 	return (line);
 }
