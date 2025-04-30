@@ -46,15 +46,11 @@ Você deve:
 
 ## 🧩 Funções que você provavelmente vai precisar criar
 
-    ft_strlen
-
-    ft_strchr
-
-    ft_strdup
-
-    ft_strjoin
-
-    ft_substr
+- ft_strjoin
+- ft_strchr
+- ft_bzero
+- ft_calloc
+- ft_strlen
 
 ## 🔄 Gerenciamento de múltiplos FDs
 
