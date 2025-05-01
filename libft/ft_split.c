@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 13:10:39 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/19 17:12:48 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:28:30 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	h_word_count(const char *str, char c);
 static char	*h_fill_word(const char *str, int start, int end);
-static void	*h_free(char **strs, int count);
+static void	*h_join_and_free(char **strs, int count);
 static void	h_initiate_vars(size_t *i, int *j, int *s_word);
 
 static void	h_initiate_vars(size_t *i, int *j, int *s_word)
@@ -24,7 +24,7 @@ static void	h_initiate_vars(size_t *i, int *j, int *s_word)
 	*s_word = -1;
 }
 
-static void	*h_free(char **strs, int count)
+static void	*h_join_and_free(char **strs, int count)
 {
 	int		i;
 
@@ -97,7 +97,7 @@ char	**ft_split(const char *s, char c)
 		{
 			res[j] = h_fill_word(s, s_word, i);
 			if (!(res[j]))
-				return (h_free(res, j));
+				return (h_join_and_free(res, j));
 			s_word = -1;
 			j++;
 		}

@@ -14,107 +14,116 @@
 #include <unistd.h>
 
 // join e free
-static char		*h_free(char *s, char *buf)
+static char		*h_join_and_free(char *buffer, char *buf)
 {
 	char	*temp;
 
-	temp = ft_strjoin(s, buf);
-	free(s);
+	temp = ft_strjoin(buffer, buf);
+	free(buffer);
 	return (temp);
 }
 
-// deleta a linha encontrada
-static char		*h_find(char *s)
+static char		*h_read_to_buf(int fd, char *res)
 {
-	int		i;
-	int		j;
-	char	*line;
+	char 	*buffer;
+	int		byte_read;
 
-	i = 0,
-	// len da primeira linha
-	while (s[i] && s[i] != '\n')
-		i++;
-	// se terminar com \0, entao retorna Null
-	if (!s[i])
+	//malloc se o res não existir
+	if (!res)
+		res = ft_calloc(1, 1);
+	//malloc para Buffer
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	byte_read = 1;
+	while (byte_read > 0)
 	{
-		free(s);
-		return (NULL);
+		//enquanto o não chegar o fim do arquivo, lê
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (byte_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		// 0 para o fim, para evitar mem leak
+		buffer[byte_read] = 0;
+		// join e free
+		res = h_join_and_free(res, buffer);
+		// para se encontrar a '\n'
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	//(len do arquivo) - (len da primeira linha + 1)
-	line = ft_calloc((ft_strlen(s) - i + 1), sizeof(char));
-	i++;
-	j = 0;
-	while (s[i])
-		line[j++] = s[i++];
-	free(s);
-	return (line);
+	free(buffer);
+	return (res);
 }
 
 // retorna a linha
-static char		*h_line(char *s)
+static char		*h_extract_line(char *buffer)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
 	// se não tiver linha, retorna Null
-	if (!s[i])
+	if (!buffer[i])
 		return (NULL);
-	// vai até o '\0'
-	while (s[i] && s[i] != '\n')
+	// Conta quantos caracteres há até \n ou \0
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	// Aloca espaço suficiente par a linha + \0
+	line = ft_calloc(i + 2, sizeof(char));
+	if (!line)
+		return (NULL);
+	// Copia os caracteres de linha para o novo ponteiro
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		line[i] = s[i];
+		line[i] = buffer[i];
 		i++;
 	}
-	// se S terminar em '\0' ou '\n', troca o fim da linha por '\n'
-	if (s[i] && s[i] == '\n')
+	// se Buffer terminar em '\0' ou '\n', troca o fim da linha por '\n'
+	if (buffer[i] && buffer[i] == '\n')
 		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
-static char		*h_read_file(int fd, char *res)
+// deleta a linha encontrada
+static char		*h_trim_line(char *buffer)
 {
-	char 	*s;
-	int		byte_read;
+	int		i;
+	int		j;
+	char	*line;
 
-	//malloc se o res não existir
-	if (!res)
-		res = ft_calloc(1, 1);
-	//malloc para S
-	s = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	byte_read = 1;
-	while (byte_read > 0)
+	i = 0;
+	// len da primeira linha
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	// se for \0, entao retorna Null
+	if (!buffer[i])
 	{
-		//enquanto o fim da linha nao for lido
-		byte_read = read(fd, s, BUFFER_SIZE);
-		if (byte_read == -1)
-		{
-			free(s);
-			return (NULL);
-		}
-		// 0 para o fim, para evitar mem leak
-		s[byte_read] = 0;
-		// join e free
-		res = h_free(res, s);
-		// para se encontrar a '\n'
-		if (ft_strchr(s, '\n'))
-			break ;
+		free(buffer);
+		return (NULL);
 	}
-	free(s);
-	return (res);
+	//(len do arquivo) - (len da primeira linha + 1)
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	i++;
+	j = 0;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*s;
+	static char	*buffer;
 	char 		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	s = h_read_file(fd, s);
-	if (!s)
+	buffer = h_read_to_buf(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	line = h_line(s);
-	s = h_find(s);
+	line = h_extract_line(buffer);
+	buffer = h_trim_line(buffer);
 	return (line);
 }
