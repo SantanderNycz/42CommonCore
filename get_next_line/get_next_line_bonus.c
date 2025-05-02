@@ -43,6 +43,8 @@ static char	*h_read_to_buf(int fd, char *res)
 		}
 		buffer[byte_read] = '\0';
 		res = h_join_and_free(res, buffer);
+		if (!res)
+			break ;
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -78,7 +80,6 @@ static char	*h_extract_line(char *buffer)
 static char	*h_trim_line(char *buffer)
 {
 	int		i;
-	int		j;
 	char	*line;
 
 	i = 0;
@@ -89,16 +90,12 @@ static char	*h_trim_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
-	if (!line)
+	if (!buffer[i])
 	{
 		free(buffer);
-		return (NULL);
+		return (line);
 	}
-	i++;
-	j = 0;
-	while (buffer[i])
-		line[j++] = buffer[i++];
+	line = ft_strdup(buffer - i + 1);
 	free(buffer);
 	return (line);
 }
@@ -116,8 +113,12 @@ char	*get_next_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	line = h_extract_line(buffer[fd]);
-	// if (!line)
-	// 	return (NULL);
+	if (!line)
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
+		return (NULL);
+	}
 	buffer[fd] = h_trim_line(buffer[fd]);
 	return (line);
 }
