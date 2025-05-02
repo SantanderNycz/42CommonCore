@@ -6,13 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 21:11:57 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/30 21:11:57 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:23:27 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static char		*h_join_and_free(char *buffer, char *buf)
+static char	*h_join_and_free(char *buffer, char *buf)
 {
 	char	*temp;
 
@@ -21,14 +21,16 @@ static char		*h_join_and_free(char *buffer, char *buf)
 	return (temp);
 }
 
-static char		*h_read_to_buf(int fd, char *res)
+static char	*h_read_to_buf(int fd, char *res)
 {
-	char 	*buffer;
+	char	*buffer;
 	int		byte_read;
 
 	if (!res)
 		res = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buffer)
+		return (NULL);
 	byte_read = 1;
 	while (byte_read > 0)
 	{
@@ -36,9 +38,10 @@ static char		*h_read_to_buf(int fd, char *res)
 		if (byte_read == -1)
 		{
 			free(buffer);
+			free(res);
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		buffer[byte_read] = '\0';
 		res = h_join_and_free(res, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
@@ -47,13 +50,13 @@ static char		*h_read_to_buf(int fd, char *res)
 	return (res);
 }
 
-static char		*h_extract_line(char *buffer)
+static char	*h_extract_line(char *buffer)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buffer || !buffer[0])
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
@@ -72,7 +75,7 @@ static char		*h_extract_line(char *buffer)
 	return (line);
 }
 
-static char		*h_trim_line(char *buffer)
+static char	*h_trim_line(char *buffer)
 {
 	int		i;
 	int		j;
@@ -87,6 +90,11 @@ static char		*h_trim_line(char *buffer)
 		return (NULL);
 	}
 	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	if (!line)
+	{
+		free(buffer);
+		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -98,14 +106,18 @@ static char		*h_trim_line(char *buffer)
 char	*get_next_line(int fd)
 {
 	static char	*buffer[FOPEN_MAX];
-	char 		*line;
+	char		*line;
 
-	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= FOPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (!buffer[fd])
+		buffer[fd] = ft_calloc(1, 1);
 	buffer[fd] = h_read_to_buf(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
 	line = h_extract_line(buffer[fd]);
+	// if (!line)
+	// 	return (NULL);
 	buffer[fd] = h_trim_line(buffer[fd]);
 	return (line);
 }
