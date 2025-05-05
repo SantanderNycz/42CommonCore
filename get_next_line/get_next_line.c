@@ -29,24 +29,24 @@ static char	*h_read_to_buf(int fd, char *res)
 
 	if (!res)
 		res = ft_calloc(1, 1);
+	if (!res)
+		return (NULL);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
-		return (NULL);
+		return (free(res), NULL);
 	byte_read = 1;
 	while (byte_read > 0)
 	{
 		byte_read = read(fd, buffer, BUFFER_SIZE);
-		if (byte_read == -1)
-		{
-			free(buffer);
-			free(res);
-			return (NULL);
-		}
-		buffer[byte_read] = 0;
+		if (byte_read < 0)
+			break ;
+		buffer[byte_read] = '\0';
 		res = h_join_and_free(res, buffer);
-		if (ft_strchr(buffer, '\n'))
+		if (!res || ft_strchr(buffer, '\n'))
 			break ;
 	}
+	if (byte_read < 0)
+		return (free(buffer), free(res), NULL);
 	free(buffer);
 	return (res);
 }
@@ -120,10 +120,7 @@ char	*get_next_line(int fd)
 	}
 	buffer = h_read_to_buf(fd, buffer);
 	if (!buffer)
-	{
-		buffer = NULL;
 		return (NULL);
-	}
 	line = h_extract_line(buffer);
 	buffer = h_trim_line(buffer);
 	return (line);

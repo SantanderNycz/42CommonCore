@@ -90,11 +90,9 @@ static char	*h_trim_line(char *buffer)
 	line = ft_calloc(ft_strlen(buffer) - i + 1, sizeof(char));
 	if (!line)
 		return (free(buffer), NULL);
-	i++;
 	j = 0;
-	while (buffer[i])
-		line[j++] = buffer[i++];
-	line[j] = '\0';
+	while (buffer[++i])
+		line[j++] = buffer[i];
 	free(buffer);
 	return (line);
 }
@@ -117,5 +115,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	buffer[fd] = h_trim_line(buffer[fd]);
+	if (!buffer[fd] && line [0] == '\0')
+		return (free(line), NULL);
 	return (line);
 }
