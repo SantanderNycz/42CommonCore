@@ -31,7 +31,6 @@ static char	*h_join_and_free(char *buffer, char *buf)
 	}
 	temp = ft_strjoin(buffer, buf);
 	free(buffer);
-	buffer = NULL;
 	return (temp);
 }
 
@@ -124,6 +123,12 @@ char	*get_next_line(int fd)
 	if (!buffer[fd])
 		return (NULL);
 	line = h_extract_line(buffer[fd]);
+	if (!line)
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
+		return (NULL);
+	}
 	buffer[fd] = h_trim_line(buffer[fd]);
 	return (line);
 }
