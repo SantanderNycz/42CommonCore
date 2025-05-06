@@ -40,7 +40,7 @@ static char	*h_read_to_buf(int fd, char *res)
 			break ;
 		buffer[byte_read] = '\0';
 		res = h_join_and_free(res, buffer);
-		if (!res || ft_strchr(buffer, '\n') || byte_read == 0)
+		if (!res || ft_strchr(buffer, '\n'))
 			break ;
 	}
 	if (byte_read < 0)
@@ -69,6 +69,7 @@ static char	*h_extract_line(char *buffer)
 	}
 	if (buffer[i] == '\n')
 		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
@@ -85,7 +86,7 @@ static char	*h_trim_line(char *buffer)
 		i++;
 	if (!buffer[i])
 		return (free(buffer), NULL);
-	line = ft_calloc(ft_strlen(buffer + i) + 1, sizeof(char));
+	line = ft_calloc(ft_strlen(buffer) - i + 1, sizeof(char));
 	if (!line)
 		return (free(buffer), NULL);
 	j = 0;
@@ -100,13 +101,13 @@ char	*get_next_line(int fd)
 	static char	*buffer[FOPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read (fd, 0, 0) < 0)
+	if (fd < 0 || fd >= FOPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[fd] = h_read_to_buf(fd, buffer[fd]);
 	if (!buffer[fd])
 		return (NULL);
 	line = h_extract_line(buffer[fd]);
-	if (!line || read(fd, buffer, BUFFER_SIZE) == 0)
+	if (!line)
 	{
 		free(buffer[fd]);
 		buffer[fd] = NULL;
