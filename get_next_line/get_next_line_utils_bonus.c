@@ -12,59 +12,57 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		sizetotal;
 	char	*res;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
+	size_t	len1;
+	size_t	len2;
 
 	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	res = malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!res || !s1 || !s2)
 		return (NULL);
-	while (s1[i] != 0)
+	while (i < len1)
 	{
 		res[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j] != 0)
+	while (j < len2)
 	{
-		res[i] = s2[j];
-		i++;
+		res[i + j] = s2[j];
 		j++;
 	}
-	res[sizetotal] = 0;
+	res[i + j] = '\0';
 	return (res);
 }
 
 char	*ft_strchr(const char *s, int n )
 {
-	char	*str;
-
-	str = (char *)s;
-	while (*str != n && *str != 0)
-		str++;
-	if (*str == n)
-		return (str);
-	else
+	if (!s)
 		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)n)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char)n)
+		return ((char *)s);
+	return (NULL);
 }
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*str;
-	size_t	i;
+	unsigned char	*p;
 
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i++;
-	}
+	p = (unsigned char *)s;
+	while (n--)
+		*p++ = 0;
 }
 
 size_t	ft_strlen(const char *str)

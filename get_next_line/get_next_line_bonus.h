@@ -23,8 +23,8 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *s, int n );
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *src);

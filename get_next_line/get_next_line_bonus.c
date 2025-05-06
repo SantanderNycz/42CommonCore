@@ -17,8 +17,11 @@ static char	*h_join_and_free(char *buffer, char *buf)
 {
 	char	*temp;
 
+	if (!buffer || !buf)
+		return (NULL);
 	temp = ft_strjoin(buffer, buf);
 	free(buffer);
+	buffer = NULL;
 	return (temp);
 }
 
@@ -31,7 +34,7 @@ static char	*h_read_to_buf(int fd, char *res)
 		res = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!res || !buffer)
-		return (free(res), NULL);
+		return (free(res), free(buffer), NULL);
 	byte_read = 1;
 	while (byte_read > 0)
 	{
@@ -43,9 +46,10 @@ static char	*h_read_to_buf(int fd, char *res)
 		if (!res || ft_strchr(buffer, '\n'))
 			break ;
 	}
+	free(buffer);
 	if (byte_read < 0)
-		return (free(buffer), free(res), NULL);
-	return (free(buffer), res);
+		return (free(res), NULL);
+	return (res);
 }
 
 static char	*h_extract_line(char *buffer)
@@ -89,9 +93,11 @@ static char	*h_trim_line(char *buffer)
 	line = ft_calloc(ft_strlen(buffer) - i + 1, sizeof(char));
 	if (!line)
 		return (free(buffer), NULL);
+	i++;
 	j = 0;
-	while (buffer[++i])
-		line[j++] = buffer[i];
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	line[j] = '\0';
 	free(buffer);
 	return (line);
 }
