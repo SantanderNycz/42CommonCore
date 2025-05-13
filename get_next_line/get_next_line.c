@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
 
 static char	*h_join_and_free(char *buffer, char *buf)
 {
 	char	*temp;
 
+	if (!buffer)
+		return (ft_strdup(buf));
+	if (!buf)
+		return (buffer);
 	temp = ft_strjoin(buffer, buf);
 	free(buffer);
 	return (temp);
@@ -28,10 +31,13 @@ static char	*h_read_to_buf(int fd, char *res)
 	int		byte_read;
 
 	if (!res)
-		res = ft_calloc(1, 1);
-	if (!res)
-		return (NULL);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	{
+		res = (char *)malloc(1 * sizeof(char));
+		if (!res)
+			return (NULL);
+		res[0] = '\0';
+	}
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (free(res), NULL);
 	byte_read = 1;
@@ -39,16 +45,13 @@ static char	*h_read_to_buf(int fd, char *res)
 	{
 		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read < 0)
-			break ;
+			return (free(buffer), free(res), NULL);
 		buffer[byte_read] = '\0';
 		res = h_join_and_free(res, buffer);
 		if (!res || ft_strchr(buffer, '\n'))
 			break ;
 	}
-	if (byte_read < 0)
-		return (free(buffer), free(res), NULL);
-	free(buffer);
-	return (res);
+	return (free (buffer), res);
 }
 
 static char	*h_extract_line(char *buffer)
@@ -57,11 +60,14 @@ static char	*h_extract_line(char *buffer)
 	char	*line;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buffer || buffer[0] == '\0')
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	if (buffer[i] == '\n')
+		line = (char *)malloc((i + 2) * sizeof(char));
+	else
+		line = (char *)malloc((i + 1) * sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -70,7 +76,7 @@ static char	*h_extract_line(char *buffer)
 		line[i] = buffer[i];
 		i++;
 	}
-	if (buffer[i] && buffer[i] == '\n')
+	if (buffer[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
@@ -83,6 +89,8 @@ static char	*h_trim_line(char *buffer)
 	char	*line;
 
 	i = 0;
+	if (!buffer)
+		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
 	if (!buffer[i])
@@ -90,16 +98,14 @@ static char	*h_trim_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	line = (char *)malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
 	if (!line)
-	{
-		free(buffer);
-		return (NULL);
-	}
+		return (free(buffer), NULL);
 	i++;
 	j = 0;
 	while (buffer[i])
 		line[j++] = buffer[i++];
+	line[j] = '\0';
 	free(buffer);
 	return (line);
 }
@@ -109,7 +115,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		if (buffer)
 		{
@@ -123,5 +129,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = h_extract_line(buffer);
 	buffer = h_trim_line(buffer);
+	if (!line)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
 	return (line);
 }

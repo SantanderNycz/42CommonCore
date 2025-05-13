@@ -6,60 +6,60 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:15:06 by lsantand          #+#    #+#             */
-/*   Updated: 2025/05/05 17:15:06 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:09:38 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <unistd.h>
 
-static char	*h_join_and_free(char *buffer, char *buf)
+static char	*h_join_and_free(char *buffer, char *buf, int byte_read)
 {
 	char	*temp;
+	char	*buf_temp;
+	int		i;
 
 	if (!buffer)
 	{
 		buffer = (char *)malloc(1);
 		if (!buffer)
-			return (NULL);
+			return (free(buffer), NULL);
 		buffer[0] = '\0';
 	}
-	if (!buf)
+	buf_temp = (char *)malloc(sizeof(char) * (byte_read + 1));
+	if (!buf_temp)
+		return (free(buffer), NULL);
+	i = 0;
+	while (i < byte_read)
 	{
-		free(buffer);
-		return (NULL);
+		buf_temp[i] = buf[i];
+		i++;
 	}
-	temp = ft_strjoin(buffer, buf);
+	buf_temp[byte_read] = '\0';
+	temp = ft_strjoin(buffer, buf_temp);
 	free(buffer);
+	free(buf_temp);
 	return (temp);
 }
 
-static char	*h_read_to_buf(int fd, char *res)
+static char	*h_read_to_buf(int fd, char	*buffer, char *buf)
 {
-	char	*buffer;
 	int		byte_read;
 
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
 	byte_read = 1;
-	while (byte_read > 0 && (!res || !ft_strchr(res, '\n')))
+	while (byte_read > 0 && (!buffer || !ft_strchr(buffer, '\n')))
 	{
-		byte_read = read(fd, buffer, BUFFER_SIZE);
+		byte_read = read(fd, buf, BUFFER_SIZE);
 		if (byte_read == -1)
+			return (free(buf), free(buffer), NULL);
+		buf[byte_read] = '\0';
+		if (byte_read > 0)
 		{
-			free(buffer);
-			if (res)
-				free(res);
-			return (NULL);
+			buffer = h_join_and_free(buffer, buf, byte_read);
+			if (!buffer)
+				return (NULL);
 		}
-		buffer[byte_read] = '\0';
-		res = h_join_and_free(res, buffer);
-		if (!res)
-			break ;
 	}
-	free(buffer);
-	return (res);
+	return (free(buf), buffer);
 }
 
 static char	*h_extract_line(char *buffer)
@@ -108,27 +108,35 @@ static char	*h_trim_line(char *buffer)
 	while (buffer[i])
 		line[j++] = buffer[i++];
 	line[j] = '\0';
+	if (j == 0)
+		return (free(line), free(buffer), NULL);
 	free(buffer);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[FOPEN_MAX];
+	static char	*buffer[OPEN_MAX];
+	char		*buf;
 	char		*line;
 
-	if (fd < 0 || fd >= FOPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer[fd] = h_read_to_buf(fd, buffer[fd]);
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (free(buf), NULL);
+	buffer[fd] = h_read_to_buf(fd, buffer[fd], buf);
 	if (!buffer[fd])
 		return (NULL);
 	line = h_extract_line(buffer[fd]);
 	if (!line)
+		return (free(buffer[fd]), (buffer[fd] = NULL), NULL);
+	buffer[fd] = h_trim_line(buffer[fd]);
+	if (!buffer[fd] || buffer[fd][0] == '\0')
 	{
 		free(buffer[fd]);
 		buffer[fd] = NULL;
-		return (NULL);
 	}
-	buffer[fd] = h_trim_line(buffer[fd]);
+	buf = NULL;
 	return (line);
 }

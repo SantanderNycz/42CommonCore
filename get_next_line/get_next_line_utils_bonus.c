@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 23:14:11 by lsantand          #+#    #+#             */
-/*   Updated: 2025/05/06 18:25:57 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:08:41 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,6 @@ char	*ft_strchr(const char *s, int n )
 	return (NULL);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*p;
-
-	p = (unsigned char *)s;
-	while (n--)
-		*p++ = 0;
-}
-
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -75,13 +66,26 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strdup(const char *s)
 {
-	char	*res;
+	char	*dup;
+	size_t	len;
+	size_t	i;
 
-	res = malloc(size * count);
-	if (!res)
+	if (!s)
 		return (NULL);
-	ft_bzero(res, size * count);
-	return (res);
+	len = 0;
+	while (s[len])
+		len++;
+	dup = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
