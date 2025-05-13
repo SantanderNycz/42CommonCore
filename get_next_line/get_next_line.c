@@ -16,11 +16,9 @@ static char	*h_join_and_free(char *buffer, char *buf)
 {
 	char	*temp;
 
-	if (!buffer)
-		return (ft_strdup(buf));
-	if (!buf)
-		return (buffer);
 	temp = ft_strjoin(buffer, buf);
+	if (!temp)
+		return (free(buffer), NULL);
 	free(buffer);
 	return (temp);
 }
