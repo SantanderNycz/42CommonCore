@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shovsepy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 19:17:36 by shovsepy          #+#    #+#             */
-/*   Updated: 2021/06/30 17:40:27 by shovsepy         ###   ########.fr       */
+/*   Created: 2025/07/31 19:19:45 by lsantand          #+#    #+#             */
+/*   Updated: 2025/07/31 19:27:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE	(1)
-# define MAX_FD (1025)
+# define BUFF_SIZE 1
+# define MAX_FD 1025
 
 void				*ft_bzero(void *s, size_t len);
 void				ft_putchar_fd(char c, int fd);

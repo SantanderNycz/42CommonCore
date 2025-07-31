@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/06 18:46:12 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/06 18:46:15 by lsantand         ###   ########.fr       */
+/*   Created: 2025/07/31 18:31:56 by lsantand          #+#    #+#             */
+/*   Updated: 2025/07/31 19:24:58 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ int	do_commands(char *line, t_list **stack_a, t_list **stack_b)
 	}
 	if (!(ft_strcmp(line, "rra")))
 	{
-		reverseRotate(stack_a);
+		reverse_rotate(stack_a);
 		return (0);
 	}
 	if (!(ft_strcmp(line, "rrb")))
 	{
-		reverseRotate(stack_b);
+		reverse_rotate(stack_b);
 		return (0);
-	}	
+	}
 	if (!(ft_strcmp(line, "rrr")))
 	{
-		reverseRotate(stack_a);
-		reverseRotate(stack_b);
+		reverse_rotate(stack_a);
+		reverse_rotate(stack_b);
 		return (0);
 	}
 	return (1);
@@ -87,7 +87,7 @@ void	print_checker_res(t_list **stack_a, t_list **stack_b)
 		free_stack(stack_b);
 }
 
-static void	initStack(t_list **stack, int argc, char **argv)
+static void	init_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
 	char	**args;
@@ -125,7 +125,7 @@ int	main(int argc, char **argv)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	ft_check_args(argc, argv);
-	initStack(stack_a, argc, argv);
+	init_stack(stack_a, argc, argv);
 	while (get_next_line(0, &line))
 	{
 		if (do_commands(line, stack_a, stack_b))
@@ -138,4 +138,3 @@ int	main(int argc, char **argv)
 	print_checker_res(stack_a, stack_b);
 	return (0);
 }
-

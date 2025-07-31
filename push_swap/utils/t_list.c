@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:45:56 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/06 18:45:58 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:25:46 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_lstsize(t_list *head)
 }
 
 // Prints the Linked List
-void	printList(t_list *head)
+void	print_list(t_list *head)
 {
 	t_list	*tmp;
 
@@ -95,4 +95,3 @@ void	printList(t_list *head)
 		tmp = tmp->next;
 	}
 }
-

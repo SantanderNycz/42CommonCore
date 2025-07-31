@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:45:53 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/06 18:45:54 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/07/31 19:09:49 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	index_stack(t_list **stack)
 		head = get_next_min(stack);
 	}
 }
-
