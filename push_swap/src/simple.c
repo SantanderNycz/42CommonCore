@@ -6,13 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:45:44 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/31 19:10:10 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:41:47 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_min(t_list **stack, int val)
+int	get_min(t_list **stack, int val)
 {
 	t_list	*head;
 	int		min;
@@ -26,42 +26,6 @@ static int	get_min(t_list **stack, int val)
 			min = head->index;
 	}
 	return (min);
-}
-
-static void	sort_3(t_list **stack_a)
-{
-	t_list	*head;
-	int		min;
-	int		next_min;
-
-	head = *stack_a;
-	min = get_min(stack_a, -1);
-	next_min = get_min(stack_a, min);
-	if (is_sorted(stack_a))
-		return ;
-	if (head->index == min && head->next->index != next_min)
-	{
-		ra(stack_a);
-		sa(stack_a);
-		rra(stack_a);
-	}
-	else if (head->index == next_min)
-	{
-		if (head->next->index == min)
-			sa(stack_a);
-		else
-			rra(stack_a);
-	}
-	else
-	{
-		if (head->next->index == min)
-			ra(stack_a);
-		else
-		{
-			sa(stack_a);
-			rra(stack_a);
-		}
-	}
 }
 
 static void	sort_4(t_list **stack_a, t_list **stack_b)

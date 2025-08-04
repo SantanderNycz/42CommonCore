@@ -6,28 +6,11 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 18:46:00 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/06 18:46:02 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:09:38 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_error(char *msg)
-{
-	ft_putendl_fd(msg, 1);
-	exit(0);
-}
-
-void	ft_free(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	while (i >= 0)
-		free(str[i--]);
-}
 
 int	is_sorted(t_list **stack)
 {
@@ -81,17 +64,16 @@ void	make_top(t_list **stack, int distance)
 	}
 }
 
-void	free_stack(t_list **stack)
+// Prints the Linked List
+void	print_list(t_list *head)
 {
-	t_list	*head;
 	t_list	*tmp;
 
-	head = *stack;
-	while (head)
+	tmp = head;
+	while (tmp != NULL)
 	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
+		ft_putnbr_fd(tmp->value, 1);
+		ft_putendl_fd("", 1);
+		tmp = tmp->next;
 	}
-	free(stack);
 }

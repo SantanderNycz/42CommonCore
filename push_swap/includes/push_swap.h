@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:07:38 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/31 19:25:45 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:42:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_free(char **str);
 void	radix_sort(t_list **stack_a, t_list **stack_b);
 void	simple_sort(t_list **stack_a, t_list **stack_b);
 void	index_stack(t_list **stack);
+int	get_min(t_list **stack, int val);
+void	sort_3(t_list **stack_a);
 void	sort_5(t_list **stack_a, t_list **stack_b);
 
 // Instruction functions
