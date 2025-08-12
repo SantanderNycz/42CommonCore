@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/12 17:42:04 by lsantand          #+#    #+#             */
+/*   Updated: 2025/08/12 17:42:21 by lsantand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int     put_image(t_game game, char c, int x, int y)
@@ -16,7 +28,7 @@ int     put_image(t_game game, char c, int x, int y)
     if (c == 'P')
         img = game.assets.player;
     if (c == 'E')
-        img = game.assets.exist;
+        img = game.assets.exit;
     mxl_put_image_to_window(game.mlx, game.mlx_win, img, x, y);
     return (0);
 }
@@ -58,8 +70,8 @@ int     fill_win(t_game game)
     {
         if (game.map[i] != '\n')
         {
-            find_x_y(game, i, &x, &y)
-            put_image(game, game.map[(game.map_w + 1) * y + x], x * 96, y *96)
+            find_x_y(game, i, &x, &y);
+            put_image(game, game.map[(game.map_w + 1) * y + x], x * 96, y *96);
         }
     }
     return (0);

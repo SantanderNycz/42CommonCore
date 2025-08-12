@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:35:53 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/21 21:37:51 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/08/12 17:43:16 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int     check_integrity(char *map)
             return (EXIT_FAILURE);
         j++;    
     }
-    return (EXIT_SUCESS);
+    return (EXIT_SUCCESS);
 }
 
 int     check_filename(char *filename)
