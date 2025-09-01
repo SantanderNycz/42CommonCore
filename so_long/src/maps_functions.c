@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 21:27:36 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/22 22:41:39 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/08/14 18:06:37 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int     get_map(t_game *game, char *file)
     
     fd = open(file, O_RDONLY);
     if (fd == -1)
-        return (ft_print_e(ER_NOMAP), close_program(game), 0);
+        return (ft_printf_e(ER_NOMAP), close_program(game), 0);
     i = 0;
     rt_val = 1;
     while (rt_val > 0)

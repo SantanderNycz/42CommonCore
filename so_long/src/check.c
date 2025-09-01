@@ -6,13 +6,13 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:35:53 by lsantand          #+#    #+#             */
-/*   Updated: 2025/08/12 17:43:16 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:45:10 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int     check_enclousure(char *map)
+int     check_enclosure(char *map)
 {
     int     i;
     int     j;
@@ -20,10 +20,10 @@ int     check_enclousure(char *map)
 
     i = -1;
     line_l = line_len(map);
-    while (++i <= nb_ocurrence(map, '\n'))
+    while (++i <= nb_occurrence(map, '\n'))
     {
         j = i * (line_l + 1);
-        if (i == 0 || i == nb_ocurrence(map, '\n'))
+        if (i == 0 || i == nb_occurrence(map, '\n'))
         {
             while (j < i * (line_l + 1) + line_l)
                 if (map[j++] != '1')
@@ -44,7 +44,7 @@ int     check_integrity(char *map)
 
     line_l = line_len(map);
     j = 0;
-    while (j <= nb_ocurrence(map, '\n'))
+    while (j <= nb_occurrence(map, '\n'))
     {
         i = 0;
         while (map[i + j * (line_l + 1)] && map[i + j * (line_l + 1)] != '\n')
@@ -52,6 +52,19 @@ int     check_integrity(char *map)
         if (i != line_l)
             return (EXIT_FAILURE);
         j++;    
+    }
+    return (EXIT_SUCCESS);
+}
+
+int check_charactere(char *map)
+{
+    int i;
+
+    i = -1;
+    while (map[++i])
+    {
+        if (map[i] != '1' && map[i] != '0' && map[i] != 'C' && map[i] != 'P' && map[i] != 'E' && map[i] != '\n')
+            return (EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);
 }
@@ -80,22 +93,22 @@ int     check_map(t_game *game, char *filename)
         return (close_program(game), 0);
     game->game_state = 1;
     get_map(game, filename);
-    game->map_h = nb_ocurrence(game->map, '\n') + 1;
+    game->map_h = nb_occurrence(game->map, '\n') + 1;
     game->map_w = line_len(game->map);
     if (check_charactere(game->map))
-        return (ft_print_e(ER_MAPCHAR), close_program(game));
-    if (nb_ocurrence(game->map, 'P') != 1)
-        return (ft_print_e(ER_NOSTART), close_program(game));
-    if (nb_ocurrence(game->map, 'E') != 1)
-        return (ft_print_e(ER_NOEND), close_program(game));
-    if (nb_ocurrence(game->map, 'C') < 1)
-        return (ft_print_e(ER_NOCOL), close_program(game));
+        return (ft_printf_e(ER_MAPCHAR), close_program(game));
+    if (nb_occurrence(game->map, 'P') != 1)
+        return (ft_printf_e(ER_NOSTART), close_program(game));
+    if (nb_occurrence(game->map, 'E') != 1)
+        return (ft_printf_e(ER_NOEND), close_program(game));
+    if (nb_occurrence(game->map, 'C') < 1)
+        return (ft_printf_e(ER_NOCOL), close_program(game));
     if (check_integrity(game->map))
-        return (ft_print_e(ER_MAPLEN), close_program(game));
+        return (ft_printf_e(ER_MAPLEN), close_program(game));
     if (check_enclosure(game->map))
-        return (ft_print_e(ER_WALL), close_program(game));
-        game->game_state = 2;
+        return (ft_printf_e(ER_WALL), close_program(game));
+    game->game_state = 2;
     if (check_map_can_be_solved(game->map, game))
-        return (ft_print_e(ER_RESOLVE), close_program(game));
+        return (ft_printf_e(ER_RESOLVE), close_program(game));
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:13:03 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:27:31 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:36:59 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "./minilibx/mlx.h"
-# include "./Libft/libft.h"
+# include "../minilibx/mlx.h"
+# include "../Libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 
