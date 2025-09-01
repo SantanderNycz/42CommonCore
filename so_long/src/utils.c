@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:02:35 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/01 21:59:44 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/01 22:07:14 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ int     line_len(char *str)
     int     i;
     
     i = 0;
-    while (str[i++])
-        if (str[i - 1] == '\n')
-            return (i - 1);
+    if (!str)
+        return 0;
+    while (str[i])
+    {
+        if (str[i] == '\n')
+            return (i);
+        i++;
+    }
     return (i);
 }
 
