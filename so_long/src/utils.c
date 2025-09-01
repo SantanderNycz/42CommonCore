@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:02:35 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:12:51 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:59:44 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 // conta o numero de ocorrencias de um caracter
 int     nb_occurrence(char *str, char c)
 {
-    int     i;
     int     count;
+    size_t     i;
 
-    i = -1;
+    i = 0;
     count = 0;
+    if (!str)
+        return 0;
     while (str[i++])
+    {
         if (str[i] == c)
             count++;
+    }
     return (count);
 }
 

@@ -6,13 +6,13 @@
 #    By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 19:50:53 by lsantand          #+#    #+#              #
-#    Updated: 2025/08/19 20:31:24 by lsantand         ###   ########.fr        #
+#    Updated: 2025/09/01 21:13:24 by lsantand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= so_long
 CC				= cc
-FLAGS			= -Wextra -Werror -Wall -I -g3
+FLAGS			= -Wextra -Werror -Wall -I -g3 -g
 FLAGSSE 		= -fsanitize=address
 
 MLXFLAGS		= -Imlx_linux -lXext -lX11 -lm -lz

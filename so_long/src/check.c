@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:35:53 by lsantand          #+#    #+#             */
-/*   Updated: 2025/08/19 20:45:10 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:43:46 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int     check_enclosure(char *map)
     int     j;
     int     line_l;
 
-    i = -1;
+    i = 0;
     line_l = line_len(map);
-    while (++i <= nb_occurrence(map, '\n'))
+    while (i <= nb_occurrence(map, '\n'))
     {
         j = i * (line_l + 1);
-        if (i == 0 || i == nb_occurrence(map, '\n'))
+        if (++i == 0 || i == nb_occurrence(map, '\n'))
         {
             while (j < i * (line_l + 1) + line_l)
                 if (map[j++] != '1')
@@ -32,6 +32,7 @@ int     check_enclosure(char *map)
         else
             if (map[j] != '1' || map[j + line_l - 1] != '1')
                 return (EXIT_FAILURE);
+        i++;
     }
     return (EXIT_SUCCESS);
 }
