@@ -6,49 +6,107 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 19:37:52 by lsantand          #+#    #+#             */
-/*   Updated: 2025/08/14 18:01:58 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:45:56 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-char    *spread(char *mapcpy, int pos, int *nb_to_find)
+char **dup_map(char **map)
 {
-    int temp_i;
-    
-    if (mapcpy[pos] == 'C' || mapcpy[pos] == 'E')
-        *nb_to_find = *nb_to_find - 1;
-    if (mapcpy[pos] == 'C' || mapcpy[pos] == 'E' || mapcpy[pos] == 0)
-        mapcpy[pos] = 1;
-    temp_i = get_ind(pos, mapcpy, 't');
-    if (temp_i != -1 && mapcpy[temp_i] != -1)
-        spread(mapcpy, temp_i, nb_to_find);
-    temp_i = get_ind(pos, mapcpy, 'b');
-    if (temp_i != -1 && mapcpy[temp_i] != -1)
-        spread(mapcpy, temp_i, nb_to_find);
-    temp_i = get_ind(pos, mapcpy, 'l');
-    if (temp_i != -1 && mapcpy[temp_i] != -1)
-        spread(mapcpy, temp_i, nb_to_find);
-    temp_i = get_ind(pos, mapcpy, 'r');
-    if (temp_i != -1 && mapcpy[temp_i] != -1)
-        spread(mapcpy, temp_i, nb_to_find);
-    return (mapcpy);
+    int i;
+    char **copy;
+
+    i = 0;
+    while (map[i])
+        i++;
+    copy = malloc(sizeof(char *) * (i + 1));
+    if (!copy)
+        return (NULL);
+    i = 0;
+    while (map[i])
+    {
+        copy[i] = ft_strdup(map[i]);
+        if (!copy[i])
+        {
+            while (--i >= 0)
+                free(copy[i]);
+            free(copy);
+            return (NULL);
+        }
+        i++;
+    }
+    copy[i] = NULL;
+    return (copy);
 }
 
-int     check_map_can_be_solved(char *map, t_game *game)
+void find_player(char **map, int *py, int *px)
 {
-    char    *mapcpy;
-    int     nb_to_find;
+    int y;
+    int x;
     
-    mapcpy = ft_strdup(map);
+    y = 0;
+    while (map[y])
+    {
+        x = 0;
+        while (map[y][x])
+        {
+            if (map[y][x] == 'P')
+            {
+                *py = y;
+                *px = x;
+                return ;
+            }
+            x++;
+        }
+        y++;
+    }
+    *py = -1;
+    *px = -1;
+}
+
+void    spread(char **mapcpy, int y, int x, int *nb_to_find)
+{
+    if (mapcpy[y][x] == '1' || mapcpy[y][x] == 'V')
+        return ;
+    if (mapcpy[y][x] == 'C' || mapcpy[y][x] == 'E' || mapcpy[y][x] == 0)
+        (*nb_to_find)--;
+    mapcpy[y][x] = 'V';
+    
+    spread(mapcpy, y - 1, x, nb_to_find); // cima 
+    spread(mapcpy, y + 1, x, nb_to_find); // baixo
+    spread(mapcpy, y, x + 1, nb_to_find); // direita
+    spread(mapcpy, y, x - 1, nb_to_find); // esquerda
+}
+
+int     check_map_can_be_solved(char **map, t_game *game)
+{
+    char    **mapcpy;
+    int     nb_to_find;
+    int     py;
+    int     px;
+    int     i;
+    
+    mapcpy = dup_map(map);
     if (!mapcpy)
         return (close_program(game), 0);
-    nb_to_find = 0;
+
     nb_to_find = nb_occurrence(map, 'C');
     nb_to_find += nb_occurrence(map, 'E');
-    mapcpy = spread(mapcpy, find_index(map, 'P'), &nb_to_find);
+
+    find_player(map, &py, &px);
+    if (py == -1 || px == -1) // sem player
+        return(free_map(mapcpy), EXIT_FAILURE);
+ 
+    spread(mapcpy, py, px, &nb_to_find);
+    
+    i = 0;
+    while (mapcpy[i])
+        free(mapcpy[i++]);
     free(mapcpy);
+
     if (nb_to_find == 0)
-        return (EXIT_SUCCESS);
-    return (EXIT_FAILURE);
+        return EXIT_SUCCESS;
+    else
+        return EXIT_FAILURE;
 }

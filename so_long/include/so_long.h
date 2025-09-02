@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:13:03 by lsantand          #+#    #+#             */
-/*   Updated: 2025/08/19 20:36:59 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:18:03 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_game {
 	void		*mlx;
 	void		*mlx_win;
 	int			game_state;
-	char		*map;
+	char		**map;
 	int			map_w;
 	int			map_h;
 	int			move;
@@ -67,14 +67,14 @@ typedef struct s_game {
 
 // ------------------------------------------------------ check_solvability.c --
 
-char	*spread(char *mapcpy, int pos, int *nb_to_find);
-int		check_map_can_be_solved(char *map, t_game *game);
+void	spread(char **mapcpy, int y, int x, int *nb_to_find);
+int		check_map_can_be_solved(char **map, t_game *game);
 
 // ------------------------------------------------------------------ check.c --
 
-int		check_enclosure(char *map);
-int		check_charactere(char *map);
-int		check_integrity(char *map);
+int		check_enclosure(char **map, int height, int width);
+int		check_charactere(char **map, int height, int width);
+int		check_integrity(char **map, int height, int width);
 int		check_map(t_game *game, char *filename);
 
 // ------------------------------------------------------------------- imgs.c --
@@ -86,18 +86,20 @@ int		close_img_wall(t_game *g);
 // ------------------------------------------------------------- maps_funct.c --
 
 int		get_map_size(t_game *game, char *filename);
-int		get_map(t_game *game, char *file);
+char	**get_map(char *file, int *height, int *width);
+void    free_map(char **map);
 
 // ------------------------------------------------------------------- move.c --
 
 int		move_check(t_game *game, char direction);
-int		move_player(t_game game, int from_pos, char direction);
+int		move_player(t_game *game, int from_pos, char direction);
 
 // ----------------------------------------------------------------- render.c --
 
 int		put_image(t_game game, char c, int x, int y);
 int		fill_win(t_game game);
 void	*get_wall(t_game game, int x, int y);
+void    find_x_y(t_game game, int index, int *x, int *y);
 
 // ---------------------------------------------------------------- so_long.c --
 
@@ -107,10 +109,11 @@ void	check_event(t_game *game);
 
 // ------------------------------------------------------------------ utils.c --
 
-int		nb_occurrence(char *str, char c);
-int		line_len(char *str);
-int		get_ind(int pos, char *map, char directions);
-int		find_index(char *map, char to_find);
-int		find_x_y(t_game game, int pos, int *x, int *y);
+int		nb_occurrence(char **map, char c);
+int		line_len(char **map);
+int		get_ind(int pos, char **map, char directions);
+int		find_index(char **map, char to_find);
+void	find_x_y(t_game game, int pos, int *x, int *y);
+int		count_lines(char **map);
 
 #endif
