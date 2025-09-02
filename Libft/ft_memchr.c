@@ -5,23 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 13:10:07 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/09 17:46:35 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/10 11:58:03 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include <stdlib.h>
+#include <stddef.h>
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t size)
+void	*ft_memchr(const void *str, int c, size_t b)
 {
-	size_t	i;
+	unsigned char	*ustr;
+	unsigned char	uc;
 
-	i = 0;
-	while (i < size)
+	ustr = (unsigned char *)str;
+	uc = (unsigned char)c;
+	while (b--)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return ((unsigned char *)s);
-		i++;
+		if (*ustr == uc)
+			return (ustr);
+		ustr++;
 	}
-	return (0);
+	return (NULL);
 }
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int     main(void)
+{
+    const char str[] = "Testando memchr123";
+    char c = 'i';
+    printf("memchr: %s\n", (char *)memchr(str, c, 8));
+    printf("ft_memchr: %s\n", (char *)ft_memchr(str, c, 8));
+    printf("memchr ptr: %p\n", (char *)memchr(str, c, 8));
+    printf("ft_memchr ptr: %p\n\n", (char *)ft_memchr(str, c, 8));
+	
+	return (0);
+}*/

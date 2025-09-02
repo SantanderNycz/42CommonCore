@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:20:17 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/10 11:46:17 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/15 14:03:22 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 14:03:22 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+t_list	*ft_lstnew(void *content)
 {
-	while (*str)
-	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
-	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
+	t_list	*element;
+
+	element = malloc(sizeof(t_list));
+	if (!element)
+		return (NULL);
+	element->content = content;
+	element->next = NULL;
+	return (element);
 }
 
 /*#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "libft.h"
 
 int		main(void)
 {
-    printf("strchr: %s\n", strchr("abcdef", 'd'));
-    printf("ft_strchr: %s\n\n", ft_strchr("abcdef", 'd'));
+    t_list *node = ft_lstnew(strdup("42"));
+    printf("ft_lstnew: %s\n\n", (char *)node->content);
+    free(node->content);
+    free(node);
 	
 	return (0);
 }

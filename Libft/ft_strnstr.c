@@ -5,32 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 14:07:07 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/13 19:27:47 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 14:44:39 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	unsigned int	pos;
+	unsigned int	i;
 
-	i = 0;
-	j = 0;
-	if (!needle[0])
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	if (!*to_find)
+		return ((char *)str);
+	pos = 0;
+	while (str[pos] != '\0' && (size_t)pos < len)
 	{
-		j = 0;
-		while (needle[j] == haystack[i + j] && (i + j < len))
+		if (str[pos] == to_find[0])
 		{
-			j++;
-			if (!needle[j])
-				return (&((char *)haystack)[i]);
+			i = 1;
+			while (to_find[i] != '\0' && str[pos + i] == to_find[i]
+				&& (size_t)(pos + i) < len)
+			{
+				++i;
+			}
+			if (to_find[i] == '\0')
+				return ((char *)&str[pos]);
 		}
-		i++;
+		++pos;
 	}
 	return (0);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int main(void)
+{
+    const char *hay;
+	
+	hay = "Ache a agulha no palheiro";
+    printf("strnstr: %s\n", strnstr(hay, "agulha", 30));
+    printf("ft_strnstr: %s\n\n", ft_strnstr(hay, "agulha", 30));
+	
+	return (0);
+}*/

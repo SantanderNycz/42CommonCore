@@ -5,29 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 13:44:44 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 11:28:10 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:12:23 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *src)
 {
-	size_t	len;
-	size_t	i;
-	char	*copy;
+	char		*dest;
+	size_t		len;
 
-	i = 0;
-	len = ft_strlen(str);
-	copy = malloc(sizeof(char) * (len + 1));
-	if (copy == 0)
-		return (0);
-	while (str[i] && i < len)
-	{
-		copy[i] = str[i];
-		i++;
-	}
-	copy[i] = 0;
-	return (copy);
+	len = ft_strlen(src);
+	dest = malloc(sizeof(char) * (len + 1));
+	if (!(dest))
+		return (NULL);
+	ft_memcpy(dest, src, len + 1);
+	return (dest);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    const char *original = "duplicate me";
+    char *dup_std = strdup(original);
+    char *dup_ft = ft_strdup(original);
+    printf("strdup: %s\n", dup_std);
+    printf("ft_strdup: %s\n\n", dup_ft);
+    free(dup_std);
+    free(dup_ft);
+	
+	return (0);
+}
+*/

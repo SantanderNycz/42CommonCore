@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 13:36:58 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 11:28:12 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 18:59:37 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,30 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char	*var;
+	void	*ptr;
 
-	if (size && count > 2147483647 / size)
-		return (0);
-	var = malloc(count * size);
-	if (!var)
-		return (0);
-	ft_bzero(var, count * size);
-	return (var);
+	if (count == 0 || size == 0)
+		return (malloc(0));
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }
+
+/*	#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int	main(void)
+{
+    int *arr_std = (int *)calloc(3, sizeof(int));
+    int *arr_ft = (int *)ft_calloc(3, sizeof(int));
+    printf("calloc: %d %d %d %d\n", arr_std[0], arr_std[1], arr_std[2]);
+    printf("ft_calloc: %d %d %d %d\n\n", arr_ft[0], arr_ft[1], arr_ft[2]);
+    free(arr_std);
+    free(arr_ft);
+	
+	return (0);
+}*/

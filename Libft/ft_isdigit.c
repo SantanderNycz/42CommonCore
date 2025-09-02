@@ -5,18 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 13:50:52 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/08 19:51:19 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:09:15 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	ft_isdigit(int i)
+{
+	if (i >= '0' && i <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+/*#include <stdio.h>
+#include <ctype.h>
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	main(void)
 {
-	if (c > '9' || c < '0')
-	{
-		return (0);
-	}
-	return (1);
-}
+    printf("isdigit('5'): %d\n", isdigit('5'));
+    printf("ft_isdigit('5'): %d\n", ft_isdigit('5'));
+	
+	return (0);
+}*/

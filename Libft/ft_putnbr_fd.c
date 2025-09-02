@@ -5,36 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 14:22:55 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 13:13:10 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:17:36 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-int	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int				temp;
-	unsigned int	pn;
-
-	temp = 0;
-	pn = n;
-	if (n == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
-	else
-	{	
-		if (n < 0)
-		{
-			temp = ft_putchar_fd('-', fd);
-			if (temp == -1)
-				return (temp);
-			n = -n;
-		}
-		if (n > 9)
-			ft_putnbr_fd(n / 10, fd);
-		temp = ft_putchar_fd((n % 10) + '0', fd);
-		if (temp == -1)
-			return (temp);
+	if (n == INT_MIN)
+	{
+		write (fd, "-2147483648", 11);
+		return ;
 	}
-	return (nb_len(pn));
+	if (n < 0)
+	{
+		ft_putchar_fd ('-', fd);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd (n / 10, fd);
+	}
+	ft_putchar_fd ((n % 10) + 48, fd);
 }
+
+/*
+#include <unistd.h>
+#include "libft.h"
+
+int main(void)
+{
+    ft_putnbr_fd(42, 1);
+    write(1, "\n", 1);
+
+    ft_putnbr_fd(-12345, 1);
+    write(1, "\n", 1);
+
+    ft_putnbr_fd(0, 1);
+    write(1, "\n", 1);
+	return (0);
+}*/

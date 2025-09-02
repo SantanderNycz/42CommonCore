@@ -5,18 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:07:27 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/08 19:51:21 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:09:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	ft_isprint(int i)
+{
+	if (i >= 32 && i <= 126)
+		return (1);
+	else
+		return (0);
+}
+
+/*#include <stdio.h>
+#include <ctype.h>
 #include "libft.h"
 
-int	ft_isprint(int c)
+int		main(void)
 {
-	if (c < ' ' || c > '~')
-	{
-		return (0);
-	}
-	return (1);
+    printf("isprint(' '): %d\n", isprint(' '));
+    printf("ft_isprint(' '): %d\n", ft_isprint(' '));
+	
+	return (0);
 }
+*/

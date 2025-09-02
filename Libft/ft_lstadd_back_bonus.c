@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:20:17 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/10 11:46:17 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/14 13:10:31 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 13:58:30 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	while (*str)
+	t_list	*last;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
 }
 
 /*#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "libft.h"
 
 int		main(void)
 {
-    printf("strchr: %s\n", strchr("abcdef", 'd'));
-    printf("ft_strchr: %s\n\n", ft_strchr("abcdef", 'd'));
+    t_list *new_back = ft_lstnew(strdup("School"));
+    ft_lstadd_back(&head, new_back);
+    printf("ft_lstadd_back: ");
+    print_list(head);
 	
 	return (0);
 }

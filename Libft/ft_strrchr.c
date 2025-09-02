@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strrchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 17:33:40 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/09 17:03:19 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/10 11:52:02 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	int	i;
+	const char	*last;
 
-	i = ft_strlen((char *)str);
-	if (c == 0)
-		return ((char *)(&str[i]));
-	while (i >= 0)
+	last = NULL;
+	while (*str)
 	{
-		if (str[i] == (unsigned char)c)
-			return ((char *)&str[i]);
-		i--;
+		if (*str == (char)c)
+			last = str;
+		str++;
 	}
+	if ((char)c == '\0')
+		return ((char *)str);
+	return ((char *)last);
+}
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("strrchr: %s\n", strrchr("banana", 'a'));
+    printf("ft_strrchr: %s\n\n", ft_strrchr("banana", 'a'));
+	
 	return (0);
 }
+*/

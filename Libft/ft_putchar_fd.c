@@ -5,14 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 14:03:15 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 13:11:50 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:18:04 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putchar_fd(int c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-	return (write(fd, &c, 1));
+	write (fd, &c, 1);
 }
+
+/*#include <unistd.h>
+#include "libft.h"
+int		main(void)
+{
+	ft_putchar_fd('A', 1);
+    write(1, "\n", 1);
+    
+	return (0);
+}
+*/

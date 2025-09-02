@@ -5,59 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 17:16:37 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/08 19:51:05 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:11:51 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	check_pos_neg(const char *str, int *i)
-{
-	if (str[(*i)] == '-')
-	{
-		(*i)++;
-		return (0);
-	}
-	else if (str[(*i)] == '+')
-	{
-		(*i)++;
-		return (1);
-	}
-	else if (str[(*i)] >= '0' && str[(*i)] <= '9')
-		return (1);
-	else
-		return (2);
-}
-
-static void	ft_skipws(const char *str, int *i)
-{
-	while ((str[*(i)] > 8) && (str[*(i)] < 14 || str[*(i)] == ' '))
-		(*i)++;
-}
-
 int	ft_atoi(const char *str)
 {
-	int				i;
-	long long int	num;
-	int				*p_i;
-	int				sign;
+	int	i;
+	int	res;
+	int	neg;
 
 	i = 0;
-	num = 0;
-	p_i = &i;
-	ft_skipws(str, p_i);
-	sign = check_pos_neg(str, p_i);
-	if (sign == 2)
-		return (0);
-	while (str[i] >= '0' && str[i] <= '9')
+	res = 0;
+	neg = 1;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (num != ((num * 10 + (sign * (str[i] - '0'))) / 10))
-			return ((int)((sign + 1) / 2 / -1));
-		num = num * 10 + (str[i] - 48);
+		if (str[i] == '-')
+			neg = -1;
 		i++;
 	}
-	if (sign == 0)
-		num = num * -1;
-	return ((int)num);
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		res = (res * 10 + (str[i] - '0'));
+		i++;
+	}
+	return (res * neg);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
+
+int main(void)
+{
+    printf("ft_atoi: %d\n", ft_atoi("  +42"));
+    printf("ft_atoi: %d\n", ft_atoi("   +123"));
+    printf("ft_atoi: %d\n", ft_atoi("  0042abc"));
+    printf("ft_atoi: %d\n", ft_atoi("  -42"));
+    printf("ft_atoi: %d\n", ft_atoi("   +--123"));
+	
+	return (0);
+}*/

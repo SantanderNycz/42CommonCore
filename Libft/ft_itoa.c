@@ -5,34 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 14:28:25 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 13:10:50 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:12:59 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+
+static int	h_count_size(long n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		i++;
+		n *= -1;
+	}
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
 
 char	*ft_itoa(int n)
 {
-	char			*value;
-	unsigned int	nn;
-	int				len;
+	char	*dest;
+	int		size;
+	long	nb;
 
-	nn = n;
-	len = nb_len(nn);
-	value = malloc(sizeof(char) * (len + 1));
-	if (!value)
-		return (0);
-	value[len] = 0;
-	if (n < 0)
-		nn = -n;
-	while (--len >= 0)
+	nb = n;
+	size = h_count_size(nb);
+	dest = (char *)malloc((size + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	dest[size] = '\0';
+	if (nb < 0)
 	{
-		if (len == 0 && n < 0)
-			value[0] = '-';
-		else
-			value[len] = nn % 10 + '0';
-		nn = nn / 10;
+		dest[0] = '-';
+		nb *= -1;
 	}
-	return (value);
+	while (nb >= 10)
+	{
+		dest[--size] = (nb % 10) + 48;
+		nb /= 10;
+	}
+	dest[--size] = nb + 48;
+	return (dest);
 }
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+
+int	main(void)
+{
+    char *itoa_result = ft_itoa(-12345);
+    printf("ft_itoa: %s\n\n", itoa_result);
+    free(itoa_result);
+	return (0);
+}
+*/

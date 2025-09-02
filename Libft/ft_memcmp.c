@@ -5,28 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 13:29:47 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/09 22:45:31 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 14:52:01 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*ps1;
-	unsigned char	*ps2;
+	const unsigned char	*us1;
+	const unsigned char	*us2;
 
-	ps1 = (unsigned char *)s1;
-	ps2 = (unsigned char *)s2;
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (*ps1 == *ps2 && ++i < n)
+	us1 = (const unsigned char *)s1;
+	us2 = (const unsigned char *)s2;
+	while (n--)
 	{
-		ps1++;
-		ps2++;
+		if (*us1 != *us2)
+			return (*us1 - *us2);
+		++us1;
+		++us2;
 	}
-	return ((int)(*ps1 - *ps2));
+	return (0);
 }
+
+/*#include <stdio.h>
+#include <string.h>
+#include "libft.h"
+
+int		main(void)
+{
+    printf("memcmp: %d\n", memcmp("abc", "abd", 2));
+    printf("ft_memcmp: %d\n\n", ft_memcmp("abc", "abd", 2));
+	
+	return (0);
+}
+*/

@@ -5,30 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 14:13:41 by lsantand          #+#    #+#             */
-/*   Updated: 2025/07/23 20:31:56 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/10 13:12:16 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/19 17:17:52 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+void	ft_putchar_fd(char c, int fd);
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	i;
-	int		rt_val;
+	unsigned int	i;
 
 	i = 0;
-	rt_val = 0;
-	if (!s)
-		i = ft_putstr_fd("(null)", fd);
-	else
+	while (s[i])
 	{
-		while (s[i])
-		{
-			rt_val = ft_putchar_fd(s[i++], fd);
-			if (rt_val == -1)
-				return (rt_val);
-		}
+		ft_putchar_fd(s[i], fd);
+		i++;
 	}
-	return (i);
+	if (!s)
+		return ;
 }
+
+/*#include <unistd.h>
+#include "libft.h"
+
+int		main(void)
+{
+    ft_putstr_fd("Hello, world!", 1);
+    write(1, "\n", 1);
+	
+	return (0);
+}
+*/

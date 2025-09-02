@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:20:17 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/10 11:46:17 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/14 12:28:48 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 14:51:07 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+int	ft_lstsize(t_list *lst)
 {
-	while (*str)
+	int	c;
+
+	c = 0;
+	while (lst)
 	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
+		c++;
+		lst = lst->next;
 	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
+	return (c);
 }
 
 /*#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "libft.h"
 
+
 int		main(void)
 {
-    printf("strchr: %s\n", strchr("abcdef", 'd'));
-    printf("ft_strchr: %s\n\n", ft_strchr("abcdef", 'd'));
+    printf("ft_lstsize: %d\n\n", ft_lstsize(head));
 	
 	return (0);
 }

@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:20:17 by lsantand          #+#    #+#             */
-/*   Updated: 2025/04/10 11:46:17 by lsantand         ###   ########.fr       */
+/*   Created: 2025/04/14 12:28:37 by lsantand          #+#    #+#             */
+/*   Updated: 2025/04/15 14:50:17 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	while (*str)
-	{
-		if (*str == (char)c)
-			return ((char *)str);
-		str++;
-	}
-	if ((char)c == '\0')
-		return ((char *)str);
-	return (NULL);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
 
 /*#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "libft.h"
 
 int		main(void)
 {
-    printf("strchr: %s\n", strchr("abcdef", 'd'));
-    printf("ft_strchr: %s\n\n", ft_strchr("abcdef", 'd'));
-	
+    t_list *head = ft_lstnew(strdup("Porto"));
+    t_list *new_front = ft_lstnew(strdup("42"));
+    ft_lstadd_front(&head, new_front);
+    printf("ft_lstadd_front: ");
+    print_list(head);
+    
 	return (0);
 }
 */

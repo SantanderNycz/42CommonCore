@@ -1,103 +1,46 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/09 13:51:30 by lsantand          #+#    #+#              #
-#    Updated: 2025/09/02 19:38:58 by lsantand         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = libft.a
 
-SRCS		=	ft_atoi.c \
-				ft_atoi_long.c \
-				ft_bzero.c \
-				ft_calloc.c \
-				ft_isalnum.c \
-				ft_isalpha.c \
-				ft_isascii.c \
-				ft_isdigit.c \
-				ft_isdigit.c \
-				ft_isprint.c \
-				ft_memchr.c \
-				ft_memcmp.c \
-				ft_memcpy.c \
-				ft_memmove.c \
-				ft_memset.c \
-				ft_strchr.c \
-				ft_strdup.c \
-				ft_strlcat.c \
-				ft_strlcpy.c \
-				ft_strlen.c \
-				ft_strncmp.c \
-				ft_strnstr.c \
-				ft_strrchr.c \
-				ft_tolower.c \
-				ft_toupper.c \
-				ft_substr.c \
-				ft_strjoin.c \
-				ft_strtrim.c \
-				ft_split.c \
-				ft_itoa.c \
-				ft_strmapi.c \
-				ft_striteri.c \
-				ft_putchar_fd.c \
-				ft_putstr_fd.c \
-				ft_putendl_fd.c \
-				ft_putnbr_fd.c \
-				ft_putnbr_b_fd.c \
-				ft_nb_len.c \
-				ft_printf.c \
-				ft_printf_e.c \
-				count_word.c \
-				get_next_line.c \
-				get_next_line_utils.c \
-				ft_strndup.c \
+SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
+			  ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c \
+			  ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
+			  ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c \
+			  ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+			  ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
+			  ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
+			  ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
+			  ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-SRCS_BONUS	=	ft_lstnew.c \
-				ft_lstadd_front.c \
-				ft_lstsize.c \
-				ft_lstlast.c \
-				ft_lstadd_back.c \
-				ft_lstdelone.c \
-				ft_lstclear.c \
-				ft_lstiter.c \
-				ft_lstmap.c \
+B_SRCS		= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
+			  ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+			  ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
-HEADERS		= libft.h
+OBJS		= $(SRCS:.c=.o)
+B_OBJS		= $(B_SRCS:.c=.o)
 
-OBJS		= ${SRCS:.c=.o}
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+AR			= ar rcs
 
-OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
+#ar: modifica e extrai arquivos de libs
+#r (replace): adiciona/substitui novos arquivos de obj para a lib
+#c (create): cria/modifica a biblioteca
+#s (index): cria um indice para os arquivos de obj dentro da lib, para facilitar o link entre o codigo e a criacao do executavel
 
-FLAGS		=  -Wall -Wextra -Werror
+all: $(NAME)
 
-NAME		= libft.a
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-CC			= gcc
+bonus: $(NAME) $(B_OBJS)
+	$(AR) $(NAME) $(B_OBJS)
 
-AR			= ar rc
-
-RM			= rm -f
-
-%.o:		%.c ${HEADERS}	Makefile
-			${CC} ${FLAGS} -c $<
-
-${NAME}:	${OBJS}
-			${AR} ${NAME} ${OBJS}
-
-all:		${NAME}
-
-bonus:		${OBJS} ${OBJS_BONUS}
-			${AR} ${NAME} ${OBJS} ${OBJS_BONUS}
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			${RM} ${OBJS} ${OBJS_BONUS}
-			
-fclean:		clean
-			${RM} ${NAME}
+	rm -f $(OBJS) $(B_OBJS)
 
-re:			fclean all
+fclean: clean
+	rm -f $(NAME)
 
-.PHONY: 	all clean fclean re bonus
+re: fclean all bonus
