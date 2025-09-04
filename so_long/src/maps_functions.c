@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 21:27:36 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 18:13:40 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:14:29 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,27 @@ char **get_map(char *file, int *height, int *width)
     char    *line;
     char    **map;
     int     i;
+    int     len;
 
     fd = open(file, O_RDONLY);
     if (fd == -1)
         return NULL;
 
-    // conta linhas e largura do mapa
     *height = 0;
     *width = 0;
     while ((line = get_next_line(fd)))
     {
+        len = ft_strlen(line);
+        if (len && line[len - 1] == '\n')
+            len--;
         if (*width == 0)
-            *width = ft_strlen(line) - 1; // remove \n
+            *width = (int)len;
+        else if ((int)len != *width)
+        {
+            free(line);
+            close(fd);
+            return (NULL); // mapa não retangular
+        }
         free(line);
         (*height)++;
     }
@@ -62,12 +71,14 @@ char **get_map(char *file, int *height, int *width)
     map = malloc(sizeof(char *) * (*height + 1));
     if (!map)
         return NULL;
-
     fd = open(file, O_RDONLY);
     i = 0;
     while ((line = get_next_line(fd)))
     {
-        map[i] = ft_strndup(line, *width); // duplica só os chars válidos
+        len = ft_strlen(line);
+        if (len && line[len - 1] == '\n')
+            len--;
+        map[i] = ft_strndup(line, len);
         free(line);
         i++;
     }

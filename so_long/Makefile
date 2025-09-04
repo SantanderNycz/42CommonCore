@@ -6,68 +6,67 @@
 #    By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 19:50:53 by lsantand          #+#    #+#              #
-#    Updated: 2025/09/02 17:21:39 by lsantand         ###   ########.fr        #
+#    Updated: 2025/09/04 20:38:25 by lsantand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= so_long
-CC				= cc
-FLAGS			= -Wextra -Werror -Wall -I -g
-FLAGSSE 		= -fsanitize=address
+NAME        = so_long
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -g
+IFLAGS      = -Iinclude -ILibft -Iminilibx
+SANITIZE    = -fsanitize=address
 
-MLXFLAGS		= -Imlx_linux -lXext -lX11 -lm -lz
+MLXFLAGS    = -Lminilibx -lmlx -lXext -lX11 -lm -lz
 
-SRCS 			= so_long.c \
-				check_solvability.c \
-				check.c \
-				imgs.c \
-				maps_functions.c \
-				move.c \
-				render.c \
-				utils.c \
+SRCS        = so_long.c \
+              check_solvability.c \
+              check.c \
+              imgs.c \
+              maps_functions.c \
+              move.c \
+              render.c \
+              utils.c
 
-DIR_LIBX 		= minilibx/
-LIBX			= $(addprefix $(DIR_LIBX), libmlx.a)
+SRC_DIR     = src
+OBJ_DIR     = build
+OBJS        = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-DIR_LIBFT 		= Libft/
-LIBFT			= $(addprefix $(DIR_LIBFT), libft.a)
+DIR_LIBX    = minilibx
+LIBX        = $(DIR_LIBX)/libmlx.a
 
-OBJS			= ${SRCS:%.c=./build/%.o}
+DIR_LIBFT   = Libft
+LIBFT       = $(DIR_LIBFT)/libft.a
 
-HEADER 			= include/so_long.h 
+HEADER      = include/so_long.h
 
-all: 			${NAME}
+all: $(NAME)
 
-${NAME}:		${OBJS} ${LIBFT} ${LIBX}
-						${CC} $^ ${FLAGS} ${MLXFLAGS} -o ${NAME}
+$(NAME): $(OBJS) $(LIBFT) $(LIBX)
+    $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX) $(MLXFLAGS) -o $(NAME)
 
-./build/%.o: 	./src/%.c ${HEADER}
-								@mkdir -p build
-								${CC} ${FLAGS} -Imlx_linux -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
+    @mkdir -p $(OBJ_DIR)
+    $(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
-${LIBX}: 			FORCE
-						${MAKE} -s -C ${DIR_LIBX}
+$(LIBX):
+    $(MAKE) -C $(DIR_LIBX)
 
-
-${LIBFT}: 			FORCE
-						${MAKE} -s -C ${DIR_LIBFT}
-
-bonus:				${NAME_B}
-
-${NAME_B}:			${OBJS_BONUS} ${LIBFT} ${LIBX}
-					${CC} $^ ${FLAGS} ${MLXFLAGS} -o ${NAME_B}
+$(LIBFT):
+    $(MAKE) -C $(DIR_LIBFT)
 
 clean:
-					${RM} -r ./build
+    $(RM) -r $(OBJ_DIR)
+    $(MAKE) -C $(DIR_LIBX) clean
+    $(MAKE) -C $(DIR_LIBFT) clean
 
-fclean:			clean
-					${RM} ${NAME}
-					${MAKE} -s -C ${DIR_LIBX} clean
-					${MAKE} -s -C ${DIR_LIBFT} clean
+fclean: clean
+    $(RM) $(NAME)
 
-re:				fclean
-					${MAKE} all
+re: fclean all
 
-FORCE:
+# Ativar sanitizer: make SANITIZE=1
+ifeq ($(SANITIZE),1)
+CFLAGS += -fsanitize=address
+endif
 
-.PHONY: all clean fclean re FORCE
+.PHONY: all clean fclean re

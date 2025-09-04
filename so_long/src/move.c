@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:44:14 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 19:13:23 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:30:23 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int     move_player(t_game *game, int from_pos, char direction)
     int     x = 0;
     int     y = 0;
     
-    x = x * 96;
-    y = y * 96;
+    x = x * TILE;
+    y = y * TILE;
     put_image(*game, '0', x, y);
     char from_cell = game->map[row][col];
     if (from_cell == 'C' || from_cell == 'O')
@@ -57,13 +57,13 @@ int     move_player(t_game *game, int from_pos, char direction)
     else if (from_cell == 'E')
         put_image(*game, 'E', x, y);
     if (direction == 't')
-        y -= 96;
+        y -= TILE;
     else if (direction == 'b')
-        y += 96;
+        y += TILE;
     else if (direction == 'r')
-        x += 96;
+        x += TILE;
     else if (direction == 'l')
-        x -= 96;
+        x -= TILE;
     ft_printf("Número de movimentos: %d\n", ++game->move);
     put_image(*game, 'P', x, y);
     return 0;

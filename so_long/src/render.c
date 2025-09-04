@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:42:04 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 19:14:24 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:18:52 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,20 @@ int     put_image(t_game game, char c, int x, int y)
     return (0);
 }
 
-void    *get_wall(t_game game, int x, int y)
+void    *get_wall(t_game *game, int x, int y)
 {
-    void    *img;
-
-    img = game.assets.wall;
-    if (y == 0)
-        img = game.assets.wall_t;
-    else if (y == game.map_h - 1)
-        img = game.assets.wall_b;
+    int max_x = game->cols - 1;
+    int max_y = game->rows - 1;
         
-    if (x == 0)
-        img = game.assets.wall_l;
-    else if (x == game.map_w - 1)
-        img = game.assets.wall_r;
-        
-    if (x == 0 && y == 0)
-        img = game.assets.wall_tl;
-    else if (x == (game.map_w - 1) && y == 0)
-        img = game.assets.wall_tr;
-    else if (x == 0 && y == game.map_h - 1)
-        img = game.assets.wall_bl;
-    else if (x == (game.map_w - 1) && y == game.map_h - 1)
-        img = game.assets.wall_br;
-    return (img);
+    if (y < 0 || y > max_y || x < 0 || x > max_x)
+        return (game->img_wall);
+    if(y > 0 && g->map[y - 1][x] != '1')
+        return (game->img_wall);
+    if(y < max_y && g->map[y + 1][x] != '1')
+        return (game->img_wall);
+    if(x > 0 && g->map[y][x - 1] != '1')
+        return (game->img_wall);
+    if(x < max_x && g->map[y][x + 1] != '1')
+        return (game->img_wall);
+    return (game->img_wall);
 }

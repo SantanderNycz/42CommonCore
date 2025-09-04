@@ -6,7 +6,7 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:02:35 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 19:25:09 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:29:35 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,22 @@ void    find_x_y(t_game game, int index, int *x, int *y)
     *x = index % game.map_w; // coluna
 }
 
-int     fill_win(t_game game)
+int     fill_win(t_game *game)
 {
     int     x;
     int     y;
 
     y = 0;
-    while (y < game.map_h)
+    while (y < game->rows && game->map[y])
     {
+        int line_len = ft_strlen(game->map[y]);
         x = 0;
-        while (x < game.map_w)
+        while (x < game->cols && x < line_len)
         {
-            put_image(game, game.map[y][x], x * 96, y * 96);
+            if (game->map[y][x] == '1')
+                mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * TILE, y * TILE);
+            else
+                mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * TILE, y * TILE);
             x++;
         }
         y++;
