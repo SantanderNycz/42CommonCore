@@ -5,68 +5,87 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/04 19:50:53 by lsantand          #+#    #+#              #
-#    Updated: 2025/09/04 20:38:25 by lsantand         ###   ########.fr        #
+#    Created: 2025/09/08 20:41:35 by lsantand          #+#    #+#              #
+#    Updated: 2025/09/08 22:23:44 by lsantand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = so_long
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
-IFLAGS      = -Iinclude -ILibft -Iminilibx
-SANITIZE    = -fsanitize=address
+NAME			= so_long
+NAME_B			= so_long_bonus
+FLAGSE			= -fsanitize=address
+FLAGS			= -Wextra -Werror -Wall -I -g3
 
-MLXFLAGS    = -Lminilibx -lmlx -lXext -lX11 -lm -lz
+MLXFLAGS		= -Iminilibx -lXext -lX11 -lm -lz
 
-SRCS        = so_long.c \
-              check_solvability.c \
-              check.c \
-              imgs.c \
-              maps_functions.c \
-              move.c \
-              render.c \
-              utils.c
+SRCS			=	so_long.c \
+					check.c \
+					check_solvability.c \
+					utils.c \
+					imgs.c \
+					maps_funct.c \
+					render.c \
+					move.c
 
-SRC_DIR     = src
-OBJ_DIR     = build
-OBJS        = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+SRCS_BONUS		=	so_long.c \
+					animation.c \
+					check.c \
+					check_solvability.c \
+					utils.c \
+					enemy_funct.c \
+					imgs.c \
+					maps_funct.c \
+					render.c \
+					move.c
+			
+DIR_MLX 		= minilibx/
+MLX				= $(addprefix $(DIR_MLX), libmlx.a)
 
-DIR_LIBX    = minilibx
-LIBX        = $(DIR_LIBX)/libmlx.a
+DIR_LIBFT		= Libft/
+LIBFT			= $(addprefix $(DIR_LIBFT), libft.a)
 
-DIR_LIBFT   = Libft
-LIBFT       = $(DIR_LIBFT)/libft.a
+OBJS 			= ${SRCS:%.c=./build/%.o}
+OBJS_BONUS		= ${SRCS_BONUS:%.c=./build_bonus/%.o}
 
-HEADER      = include/so_long.h
+HEADER			= includes/so_long.h
+BONUS_HEADER	= includes_bonus/so_long.h
 
-all: $(NAME)
+all: 			${NAME}
 
-$(NAME): $(OBJS) $(LIBFT) $(LIBX)
-    $(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBX) $(MLXFLAGS) -o $(NAME)
+${NAME}:		${OBJS} ${LIBFT} ${MLX}
+				${CC} $^ ${FLAGS} ${MLXFLAGS} -o ${NAME}
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
-    @mkdir -p $(OBJ_DIR)
-    $(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+./build/%.o:	./sources/%.c ${HEADER}
+				@mkdir -p build
+				${CC} ${FLAGS} -Iminilibx -c $< -o $@
 
-$(LIBX):
-    $(MAKE) -C $(DIR_LIBX)
+./build_bonus/%.o:	./sources_bonus/%.c ${BONUS_HEADER}
+					@mkdir -p build_bonus
+					${CC} ${FLAGS} -Iminilibx -c $< -o $@
 
-$(LIBFT):
-    $(MAKE) -C $(DIR_LIBFT)
+${MLX}:			FORCE
+				make -s -C ${DIR_MLX}
+
+${LIBFT}:		FORCE
+				make -s -C ${DIR_LIBFT}
+
+bonus:			$(NAME_B)
+
+$(NAME_B):			${OBJS_BONUS} ${LIBFT} ${MLX}
+				${CC} $^ ${FLAGS} ${MLXFLAGS} -o $(NAME_B)
 
 clean:
-    $(RM) -r $(OBJ_DIR)
-    $(MAKE) -C $(DIR_LIBX) clean
-    $(MAKE) -C $(DIR_LIBFT) clean
+				${RM} -r ./build
+				${RM} -r ./build_bonus
 
-fclean: clean
-    $(RM) $(NAME)
+fclean:			clean
+				${RM} ${NAME}
+				${RM} so_long_bonus
+				make -s -C ${DIR_MLX} clean
+				make -s -C ${DIR_LIBFT} clean
 
-re: fclean all
+re:				fclean
+				${MAKE} all
+			
+FORCE:
 
-# Ativar sanitizer: make SANITIZE=1
-ifeq ($(SANITIZE),1)
-CFLAGS += -fsanitize=address
-endif
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re FORCE
