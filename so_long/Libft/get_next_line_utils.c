@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 15:29:21 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 19:37:15 by lsantand         ###   ########.fr       */
+/*   Created: 2025/09/08 22:28:25 by lsantand          #+#    #+#             */
+/*   Updated: 2025/09/08 22:28:25 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_gnl_strjoin(char const *s1, char const *s2)
+char	*ft2_strjoin(char const *s1, char const *s2)
 {
 	size_t	len1;
 	size_t	len2;
@@ -21,31 +21,31 @@ char		*ft_gnl_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (0);
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft2_strdup(s2));
 	if (!s2)
-		return (ft_strdup(s1));
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+		return (ft2_strdup(s1));
+	len1 = ft2_strlen(s1);
+	len2 = ft2_strlen(s2);
 	join = (char *) malloc(sizeof(char) * (len1 + len2 + 1));
 	if (join == NULL)
 		return (NULL);
 	join[0] = 0;
-	ft_strlcat(join, s1, len1 + 1);
-	ft_strlcat(join, s2, len1 + len2 + 1);
+	ft2_strlcat(join, s1, len1 + 1);
+	ft2_strlcat(join, s2, len1 + len2 + 1);
 	return (join);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft2_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
 
 	if (!s)
 		return (0);
-	if (ft_strlen(s) <= start)
+	if (ft2_strlen(s) <= start)
 		len = 0;
-	else if (ft_strlen(s) < start + len)
-		len = ft_strlen(s) - start;
+	else if (ft2_strlen(s) < start + len)
+		len = ft2_strlen(s) - start;
 	sub = (char *) malloc(sizeof(char) * len + 1);
 	if (!sub)
 		return (0);
@@ -59,14 +59,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char	*ft_gnl_strdup(const char *str)
+char	*ft2_strdup(const char *str)
 {
 	size_t	len;
 	size_t	i;
 	char	*copy;
 
 	i = 0;
-	len = ft_strlen(str);
+	len = ft2_strlen(str);
 	copy = malloc(sizeof(char) * (len + 1));
 	if (copy == 0)
 		return (0);
@@ -79,7 +79,7 @@ char	*ft_gnl_strdup(const char *str)
 	return (copy);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft2_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	dst_len;
@@ -88,8 +88,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	i = 0;
 	if ((!src || !dst) && size == 0)
 		return (0);
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
+	dst_len = ft2_strlen(dst);
+	src_len = ft2_strlen(src);
 	if (dst_len < size - 1 && size > 0)
 	{
 		while (src[i] && dst_len + i < size - 1)
@@ -104,7 +104,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	return (dst_len + src_len);
 }
 
-size_t	ft_gnl_strlen(const char *str)
+size_t	ft2_strlen(const char *str)
 {
 	size_t	i;
 

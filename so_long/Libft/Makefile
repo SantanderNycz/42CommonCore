@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/09 13:51:30 by lsantand          #+#    #+#              #
-#    Updated: 2025/09/02 19:38:58 by lsantand         ###   ########.fr        #
+#    Created: 2025/09/08 22:28:49 by lsantand          #+#    #+#              #
+#    Updated: 2025/09/08 22:28:50 by lsantand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRCS		=	ft_atoi.c \
 				count_word.c \
 				get_next_line.c \
 				get_next_line_utils.c \
-				ft_strndup.c \
 
 SRCS_BONUS	=	ft_lstnew.c \
 				ft_lstadd_front.c \

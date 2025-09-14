@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 15:29:22 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/02 17:53:40 by lsantand         ###   ########.fr       */
+/*   Created: 2025/09/08 22:28:29 by lsantand          #+#    #+#             */
+/*   Updated: 2025/09/08 22:28:30 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_join_to_buffer(char *buffer, char *read)
+static char	*ft2_join_to_buffer(char *buffer, char *read)
 {
 	char	*join;
 
-	join = ft_strjoin(buffer, read);
+	join = ft2_strjoin(buffer, read);
 	if (!join)
 		return (free(buffer), buffer = NULL, NULL);
 	free(buffer);
@@ -38,7 +38,7 @@ static char	*read_file(int fd, char *buffer, size_t i)
 		if (byte_count == -1)
 			return (free(content), free(buffer), content = NULL, NULL);
 		content[byte_count] = 0;
-		buffer = ft_join_to_buffer(buffer, content);
+		buffer = ft2_join_to_buffer(buffer, content);
 		if (!buffer)
 			break ;
 		i = 0;
@@ -50,7 +50,7 @@ static char	*read_file(int fd, char *buffer, size_t i)
 	return (free(content), content = NULL, buffer);
 }
 
-static char	*ft_get_left(char *buffer)
+static char	*ft2_get_left(char *buffer)
 {
 	char	*line;
 	size_t	i;
@@ -60,13 +60,13 @@ static char	*ft_get_left(char *buffer)
 		return (0);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_substr(buffer, 0, i + 1);
+	line = ft2_substr(buffer, 0, i + 1);
 	if (!line)
 		return (0);
 	return (line);
 }
 
-static char	*ft_get_right(char *buffer)
+static char	*ft2_get_right(char *buffer)
 {
 	size_t	i;
 	char	*remaining;
@@ -76,7 +76,7 @@ static char	*ft_get_right(char *buffer)
 		i++;
 	if (!buffer[i] && buffer)
 		return (free(buffer), NULL);
-	remaining = ft_substr(buffer, i + 1, ft_strlen(buffer) - i);
+	remaining = ft2_substr(buffer, i + 1, ft2_strlen(buffer) - i);
 	if (!remaining)
 		return (free(buffer), buffer = NULL, NULL);
 	return (free(buffer), buffer = NULL, remaining);
@@ -96,8 +96,8 @@ char	*get_next_line(int fd)
 	buffer = read_file(fd, buffer, 0);
 	if (!buffer)
 		return (free(buffer), buffer = NULL, NULL);
-	line = ft_get_left(buffer);
-	buffer = ft_get_right(buffer);
+	line = ft2_get_left(buffer);
+	buffer = ft2_get_right(buffer);
 	if (!line)
 	{
 		free(buffer);
