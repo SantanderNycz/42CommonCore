@@ -6,13 +6,12 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 22:20:59 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/08 22:21:04 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/15 00:02:52 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// conte le nombre d'ocurence d'un caractere.
 int	nb_occurrence(char *str, char c)
 {
 	int	i;

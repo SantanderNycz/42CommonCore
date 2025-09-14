@@ -6,13 +6,12 @@
 /*   By: lsantand <lsantand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 22:21:27 by lsantand          #+#    #+#             */
-/*   Updated: 2025/09/08 22:22:58 by lsantand         ###   ########.fr       */
+/*   Updated: 2025/09/15 00:02:26 by lsantand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/so_long.h"
 
-//La carte doit être fermée par des murs sur chacun de ses côtés.
 int	check_enclosure(char *map)
 {
 	int	i;
@@ -37,7 +36,6 @@ int	check_enclosure(char *map)
 	return (EXIT_SUCCESS);
 }
 
-//Chacune des lignes de la carte doivent faire la même longueur.
 int	check_integrity(char *map)
 {	
 	int	i;
@@ -88,7 +86,6 @@ int	check_filename(char *filename)
 	return (EXIT_SUCCESS);
 }
 
-// verifie la validiter de la map.
 int	check_map(t_game *game, char *filename)
 {
 	if (check_filename(filename))
