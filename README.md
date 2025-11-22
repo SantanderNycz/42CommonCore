@@ -29,6 +29,7 @@ Todos os projetos são avaliados por peers e exigem testes rigorosos de qualidad
 | Projeto         | Descrição                                                                |
 | --------------- | ------------------------------------------------------------------------ |
 |<a href="https://github.com/SantanderNycz/piscine_42">`piscine`</a>| Processo de bootcamp para ingresso no CommonCore.  |
+|<a href="https://github.com/SantanderNycz/piscine_reloaded_42">`piscine reloaded`</a>| Processo de revisão, pós-piscine e pré-CommonCore.  |
 |<a href="https://github.com/SantanderNycz/libft_42">`libft`</a>| Implementação de funções da libc em C, formando uma biblioteca própria.  |
 |<a href="https://github.com/SantanderNycz/get_next_line_42">`get_next_line_42`</a>| Leitura de linhas de um arquivo, manipulando buffers e FD.               |
 |<a href="https://github.com/SantanderNycz/ft_printf_42">`ft_printf`</a>| Reimplementação da função printf do C, com parsing manual de argumentos. |
