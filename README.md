@@ -28,6 +28,7 @@ Todos os projetos são avaliados por peers e exigem testes rigorosos de qualidad
 
 | Projeto         | Descrição                                                                |
 | --------------- | ------------------------------------------------------------------------ |
+|<a href="https://github.com/SantanderNycz/piscine_42">`piscine`</a>| Processo de bootcamp para ingresso no CommonCore.  |
 |<a href="https://github.com/SantanderNycz/libft_42">`libft`</a>| Implementação de funções da libc em C, formando uma biblioteca própria.  |
 |<a href="https://github.com/SantanderNycz/get_next_line_42">`get_next_line_42`</a>| Leitura de linhas de um arquivo, manipulando buffers e FD.               |
 |<a href="https://github.com/SantanderNycz/ft_printf_42">`ft_printf`</a>| Reimplementação da função printf do C, com parsing manual de argumentos. |
@@ -35,10 +36,6 @@ Todos os projetos são avaliados por peers e exigem testes rigorosos de qualidad
 |<a href="https://github.com/SantanderNycz/so_long_42">`so_long`</a>        | Jogo simples em 2D com movimentação e coleta de itens usando a MiniLibX. |
 |<a href="https://github.com/SantanderNycz/push_swap_42">`push_swap`</a>     | Algoritmo de ordenação com número mínimo de operações em duas stacks.    |
 |<a href="https://github.com/SantanderNycz/minitalk_42">`minitalk`</a>      | Comunicação entre processos via sinais UNIX (`SIGUSR1` e `SIGUSR2`).     |
-| `pipex`         | Execução de comandos encadeados com pipes, emulando o shell.             |
-| `philosophers`  | Solução para o problema dos filósofos com threads e mutexes em C.        |
-| `minishell`     | Shell simplificado em C com parsing, execução e redirecionamentos.       |
-| `netpractice`   | Simulador de redes para prática de endereçamento IP e roteamento.        |
 |<a href="https://github.com/SantanderNycz/42Exam_Rank02">`Exam Rank 02`</a>   | Exame com 4 níveis (manipulação de string e de bits, linked list e operações matemáticas).        |
 
 ---
